@@ -53,7 +53,3 @@ Technical skills:
     - Comfortable with OS X and Linux operating systems
     - Typesetting using LaTeX
 
-
-Languages:
-    English -- Native speaker
-    French -- Strong reading/writing skills, conversational spoken
