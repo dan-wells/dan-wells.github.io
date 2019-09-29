@@ -1,0 +1,23 @@
+a {text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+div.info {
+  /*background-color: lightgray;*/
+  height: 220px;
+}
+
+h1 {
+  background-color: lightgray;
+}
+
+h2 {
+  background-color: lightgray;
+}
+
+footer {
+  font-size: small;
+  text-align: left;
+  /*border-top: 1px solid*/
+  /*background-color: lightgray;*/
+}
+
