@@ -6,7 +6,7 @@ body {
 a { text-decoration:none; }
 a:hover { text-decoration:underline; }
 
-div.info { height: 220px; }
+div.info { height: 200px; }
 
 h1 { background-color: #e9e9f5; } 
 h2 { background-color: #e9e9f5; }
