@@ -1,24 +1,15 @@
-a {text-decoration:none;}
-a:hover {text-decoration:underline;}
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
 
-div.info {
-  /*background-color: lightgray;*/
-  height: 220px;
-}
+div.info { height: 220px; }
 
-h1 {
-  /*background-color: lightgray;*/
-  background-color: #d1d1d1;
-}
-
-h2 {
-  background-color: lightgray;
-}
+h1 { background-color: #e9e9f5; } 
+h2 { background-color: #e9e9f5; }
 
 footer {
   font-size: small;
   text-align: left;
   /*border-top: 1px solid*/
-  /*background-color: lightgray;*/
+  /*background-color: #e9e9f5;*/
 }
 
