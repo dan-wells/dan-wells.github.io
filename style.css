@@ -8,8 +8,22 @@ a:hover { text-decoration:underline; }
 
 div.info { height: 200px; }
 
-h1 { background-color: #e9e9f5; } 
-h2 { background-color: #e9e9f5; }
+h1 {
+  background-color: #e9e9f5;
+  padding: 2px
+}
+
+h2 {
+  background-color: #e9e9f5;
+  padding: 2px;
+}
+
+img.photo {
+  height: 100%;
+  width=100%;
+  object-fit: contain;
+  margin-right: 5px;
+}
 
 footer {
   font-size: small;
