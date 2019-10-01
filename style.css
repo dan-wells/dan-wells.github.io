@@ -7,16 +7,16 @@ a { text-decoration:none; }
 a:hover { text-decoration:underline; }
 
 div.info {
-  width: 42em;
+  width: 45em;
   height: 200px; /* this effectively controls photo height */
 }
 
 div.m {
-  width: 42em;
+  width: 45em;
   margin-bottom: 1em;
 }
 div.l {
-  width: 32em;
+  width: 36em;
   float: left;
 }
 div.r {
