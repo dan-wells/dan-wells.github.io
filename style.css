@@ -3,29 +3,18 @@ body {
   font-size: 1em; /* no font scaling right now => default 16px/12pt */
 }
 
+h1, h2 {
+  background-color: #e9e9f5;
+  padding: 2px
+}
+
 a { text-decoration:none; }
 a:hover { text-decoration:underline; }
 
 div.info {
-  width: 48em;
-  height: 200px; /* this effectively controls photo height */
-}
-
-div.m {
-  width: 48em;
-  margin-bottom: 1em;
-}
-div.l {
-  width: 38em;
-  float: left;
-}
-div.r {
   width: 100%;
-}
-
-h1, h2 {
-  background-color: #e9e9f5;
-  padding: 2px
+  min-width: 50em;
+  height: 200px; /* this effectively controls photo height */
 }
 
 img.photo {
@@ -39,11 +28,24 @@ img.icon {
   width: 1em;
 }
 
-footer {
-  font-size: small;
-  text-align: left;
+div.m {
+  width: 100%;
+  min-width: 50em;
+  margin-bottom: 1em;
+}
+div.l {
+  width: 12em;
+  float: left;
+}
+div.r {
+  width: 100%;
 }
 
-ul {
+ul.r {
   margin: 0;
+  margin-left: 12em;
+}
+
+footer {
+  font-size: small;
 }
