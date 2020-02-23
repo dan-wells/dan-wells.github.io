@@ -1,17 +1,12 @@
 body {
   font-family: serif;
   font-size: 1em; /* no font scaling right now => default 16px/12pt */
-}
-
-h1, h2 {
-  background-color: #e9e9f5;
-  padding: 2px;
+  background-image: url("bg.gif");
+  background-repeat: repeat-xy;
 }
 
 footer {
-  background-color: #e9e9f5;
   font-size: small;
-  padding: 2px;
 }
 
 a { text-decoration:none; }
