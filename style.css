@@ -1,39 +1,45 @@
 body {
   font-family: serif;
-  font-size: 1em; /* no font scaling right now => default 16px/12pt */
   background-image: url("bg.gif");
   background-repeat: repeat-xy;
-  min-width: 36em;
-}
-
-footer {
-  font-size: small;
+  min-width: 32em; /* until we can work out better responsive design... */
 }
 
 a { text-decoration:none; }
 a:hover { text-decoration:underline; }
 
+h1 {
+  margin-top: 0;
+}
+
 div.info {
   width: 100%;
-  min-width: 36em;
   height: 180px; /* this effectively controls photo height */
+  float: left;
 }
 
 img.photo {
-  height: 100%;
-  width=100%;
   object-fit: contain; /* image is scaled to height of containing div */
-  margin-right: 5px;
+  height: 95%;
+  margin-right: 10px;
+  float: left;
 }
+
 img.icon {
-  /*font-size: 16px;*/ /* in case you change body font-size from default */
   width: 1em;
 }
 
 div.m {
   width: 100%;
-  min-width: 36em;
   margin-bottom: 1em;
+  clear: left;
+}
+
+hr {
+  clear: left;
+  /* explicitly specifying these prevents any weirdness in rendering */
+  color: gray;
+  border-top: thin solid;
 }
 
 table {
@@ -53,5 +59,10 @@ td.job {
 
 ul {
   margin: 0;
+  padding-left: 1.5em;
+}
+
+footer {
+  font-size: small;
 }
 
