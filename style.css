@@ -3,6 +3,7 @@ body {
   font-size: 1em; /* no font scaling right now => default 16px/12pt */
   background-image: url("bg.gif");
   background-repeat: repeat-xy;
+  min-width: 36em;
 }
 
 footer {
