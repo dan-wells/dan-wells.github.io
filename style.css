@@ -1,8 +1,14 @@
 body {
   font-family: serif;
   background-image: url("bg.gif");
-  background-repeat: repeat-xy;
+  background-clip: border-box;
+  max-width: 800px;
+}
+
+div.page {
   min-width: 32em; /* until we can work out better responsive design... */
+  padding: 10px;
+  border: inset;
 }
 
 a { text-decoration:none; }
@@ -10,6 +16,10 @@ a:hover { text-decoration:underline; }
 
 h1 {
   margin-top: 0;
+}
+
+h2 {
+  margin-bottom: 10px;
 }
 
 div.info {
