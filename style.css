@@ -8,7 +8,11 @@ body {
 div.page {
   min-width: 32em; /* until we can work out better responsive design... */
   padding: 10px;
-  border: inset;
+  border: inset #eeeeee;
+}
+
+hr {
+  border: 1px inset #eeeeee;
 }
 
 a { text-decoration:none; }
