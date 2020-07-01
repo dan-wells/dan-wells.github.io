@@ -463,7 +463,7 @@ create_html_page() {
         echo '<div id="title">'
         cat .title.html
         echo '</div></div></div>' # title, header, headerholder
-        echo "<div id=\"all_posts_top\"><a href=\"$archive_index\">$template_archive</a> &mdash; <a href=\"$tags_index\">$template_tags_title</a> &mdash; <a href=\"$feed\">$template_subscribe</a></div>"
+        echo "<div id=\"all_posts_top\"><a href=\"../$archive_index\">$template_archive</a> &mdash; <a href=\"../$tags_index\">$template_tags_title</a> &mdash; <a href=\"../$feed\">$template_subscribe</a></div>"
         echo '<div id="divbody"><div class="content">'
 
         file_url=${filename#./}
@@ -524,9 +524,13 @@ create_html_page() {
         awk -i inplace "{ gsub(/$cut_line/, \"$cut_line_body\") }; { print }" $filename 2> /dev/null
         # Fix relative CSS references
         sed -i 's/href="\(.*\)\.css/href="..\/\1.css/' $filename
-    else
+    elif [[ $filename != *"$prefix_tags"* ]]; then
+        # Fix relative links for index pages not in subdirs
+        awk -i inplace '/id="all_posts/ { gsub(/\.\.\//, "") }; { print }' $filename 2> /dev/null
+    fi
+    if [[ $filename == *"$index_file"* ]]; then
         # Remove relative links back to index from index page
-        sed -i "/id=\"all_posts.*\.\.\/$index_file/d" $filename
+        sed -i "/id=\"all_posts\".*$index_file/d" $filename
     fi
 }
 
