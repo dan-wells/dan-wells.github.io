@@ -863,6 +863,8 @@ rebuild_tags() {
         tagname=${tagname%.tmp.html}
         create_html_page "$i" "$prefix_tags$tagname.html" yes "$global_title &mdash; $template_tag_title \"$tagname\"" "$global_author"
         rm "$i"
+        # Fix relative CSS references
+        sed -i 's/href="\(.*\)\.css/href="..\/\1.css/' "$prefix_tags$tagname.html"
     done < <(ls -t ./"$prefix_tags"*.tmp.html 2>/dev/null)
     echo
 }
