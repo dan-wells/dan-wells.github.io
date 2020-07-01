@@ -5,7 +5,7 @@
 # https://github.com/carlesfe/bashblog/contributors
 # Check out README.md for more details
 
-# TODO: Add total post count and current number in view to index page
+# TODO: Move tags to small text underneath post date
 # TODO: Add text link to homepage alongside post and tag index links
 # TODO: Rethink all those m-dashes
 # TODO: Remove RSS and links to feed? Or maybe just move subscribe link to footer
@@ -469,6 +469,12 @@ create_html_page() {
         cat .title.html
         echo '</div></div></div>' # title, header, headerholder
         echo "<div id=\"all_posts_top\"><a href=\"../$archive_index\">$template_archive</a> &mdash; <a href=\"../$tags_index\">$template_tags_title</a> &mdash; <a href=\"../$feed\">$template_subscribe</a></div>"
+        if [[ $filename == *"$index_file"* ]]; then
+            visible_posts=$number_of_index_articles
+            num_posts=$(list_posts | wc -l)
+            (( num_posts < number_of_index_articles )) && visible_posts=$num_posts
+            echo "Showing $visible_posts/$num_posts posts"
+        fi
         echo '<div id="divbody"><div class="content">'
 
         file_url=${filename#./}

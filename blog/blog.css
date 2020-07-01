@@ -15,5 +15,5 @@ img{max-width:100%;}
 #footer{margin-top:10px;padding-top:10px;border-top:solid 1px #666;color:#333333;text-align:left;font-size:small;}
 #twitter{line-height:20px;vertical-align:top;text-align:right;font-style:italic;color:#333;margin-top:24px;font-size:14px;}
 /*code{display:block;white-space:pre-wrap}*/
-pre{margin-left:24px}
-blockquote{border-left: solid 1px #666;}
+pre{margin-left:40px;padding-left:24px;border-left:solid 1px #666}
+blockquote{border-left:solid 1px #666;}
