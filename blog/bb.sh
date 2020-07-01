@@ -558,7 +558,11 @@ parse_file() {
                 [[ -n $filename ]] || 
                     filename=$RANDOM # don't allow empty filenames
 
-                filename=./$blogpost_dir/$filename.html
+                if [[ -n $blogpost_dir ]]; then
+                    filename=$blogpost_dir/$filename.html
+                else
+                    filename=$filename.html
+                fi
 
                 # Check for duplicate file names
                 while [[ -f $filename ]]; do
