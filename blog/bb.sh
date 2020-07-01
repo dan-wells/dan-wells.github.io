@@ -463,6 +463,7 @@ create_html_page() {
         echo '<div id="title">'
         cat .title.html
         echo '</div></div></div>' # title, header, headerholder
+        echo "<div id=\"all_posts_top\"><a href=\"$archive_index\">$template_archive</a> &mdash; <a href=\"$tags_index\">$template_tags_title</a> &mdash; <a href=\"$feed\">$template_subscribe</a></div>"
         echo '<div id="divbody"><div class="content">'
 
         file_url=${filename#./}
@@ -496,6 +497,8 @@ create_html_page() {
 
             twitter "$global_url/$file_url"
 
+            echo "<div id=\"all_posts\"><a href=\"../$index_file\">$template_archive_index_page</a></div>"
+
             echo '<!-- entry end -->' # absolute end of the post
         fi
 
@@ -513,10 +516,18 @@ create_html_page() {
         echo '</body></html>'
     } > "$filename"
 
-    # Remove <hr> from posts with cut previews
-    # Have to use (g)awk inplace for compatibility with use of $cut_line elsewhere
-    # (since sed has different escapes from other things...)
-    awk -i inplace "{ gsub(/$cut_line/, \"$cut_line_body\") }; { print }" $filename 2> /dev/null
+    # post-processing
+    if [[ $index == no ]]; then
+        # Remove <hr> from posts with cut previews
+        # Have to use (g)awk inplace for compatibility with use of $cut_line elsewhere
+        # (since sed has different escapes from other things...)
+        awk -i inplace "{ gsub(/$cut_line/, \"$cut_line_body\") }; { print }" $filename 2> /dev/null
+        # Fix relative CSS references
+        sed -i 's/href="\(.*\)\.css/href="..\/\1.css/' $filename
+    else
+        # Remove relative links back to index from index page
+        sed -i "/id=\"all_posts.*\.\.\/$index_file/d" $filename
+    fi
 }
 
 # Parse the plain text file into an html file
@@ -1000,18 +1011,20 @@ create_css() {
     (( ${#css_include[@]} > 0 )) && return || css_include=('main.css' 'blog.css')
     if [[ ! -f blog.css ]]; then 
         # blog.css directives will be loaded after main.css and thus will prevail
-        echo '#title{font-size: x-large;}
+        echo '#title{font-size: large;}
         a.ablack{color:black !important;}
         li{margin-bottom:8px;}
         ul,ol{margin-left:24px;margin-right:24px;}
-        #all_posts{margin-top:24px;text-align:center;}
+        #all_posts{margin-top:24px;text-align:left;}
+        #all_posts_top{margin-top:12px;margin-bottom:10px;text-align:left;}
         .subtitle{font-size:small;margin:12px 0px;}
         .content p{margin-left:24px;margin-right:24px;}
         h1{margin-bottom:12px !important;}
         #description{font-size:large;margin-bottom:12px;}
-        h3{margin-top:42px;margin-bottom:8px;}
+        h3{margin-top:12px;margin-bottom:8px;}
         h4{margin-left:24px;margin-right:24px;}
         img{max-width:100%;}
+        #footer{margin-top:10px;padding-top:10px;border-top:solid 1px #666;color:#333333;text-align:left;font-size:small;}
         #twitter{line-height:20px;vertical-align:top;text-align:right;font-style:italic;color:#333;margin-top:24px;font-size:14px;}' > blog.css
     fi
 
