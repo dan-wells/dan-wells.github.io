@@ -5,6 +5,11 @@
 # https://github.com/carlesfe/bashblog/contributors
 # Check out README.md for more details
 
+# TODO: Add total post count and current number in view to index page
+# TODO: Add text link to homepage alongside post and tag index links
+# TODO: Rethink all those m-dashes
+# TODO: Remove RSS and links to feed? Or maybe just move subscribe link to footer
+
 # debug functions
 #set -eE -o functrace
 #failure() {
@@ -1022,21 +1027,24 @@ create_css() {
     if [[ ! -f blog.css ]]; then 
         # blog.css directives will be loaded after main.css and thus will prevail
         echo '#title{font-size: large;}
-        a.ablack{color:black !important;}
-        li{margin-bottom:8px;}
-        ul,ol{margin-left:24px;margin-right:24px;}
-        #all_posts{margin-top:24px;text-align:left;}
-        #all_posts_top{margin-top:12px;margin-bottom:10px;text-align:left;}
-        .subtitle{font-size:small;margin:12px 0px;}
-        .content p{margin-left:24px;margin-right:24px;}
-        h1{margin-bottom:12px !important;}
-        #description{font-size:large;margin-bottom:12px;}
-        h3{margin-top:12px;margin-bottom:8px;}
-        h4{margin-left:24px;margin-right:24px;}
-        img{max-width:100%;}
-        #divbodyholder{padding-left:10px;}
-        #footer{margin-top:10px;padding-top:10px;border-top:solid 1px #666;color:#333333;text-align:left;font-size:small;}
-        #twitter{line-height:20px;vertical-align:top;text-align:right;font-style:italic;color:#333;margin-top:24px;font-size:14px;}' > blog.css
+a.ablack{color:black !important;}
+li{margin-bottom:8px;}
+ul,ol{margin-left:24px;margin-right:24px;}
+#all_posts{margin-top:24px;text-align:left;}
+#all_posts_top{margin-top:12px;margin-bottom:10px;text-align:left;}
+.subtitle{font-size:small;margin:12px 0px;}
+.content p{margin-left:24px;margin-right:24px;}
+h1{margin-bottom:12px !important;}
+#description{font-size:large;margin-bottom:12px;}
+h3{margin-top:12px;margin-bottom:8px;}
+h4{margin-left:24px;margin-right:24px;}
+img{max-width:100%;}
+#divbodyholder{padding-left:10px;}
+#footer{margin-top:10px;padding-top:10px;border-top:solid 1px #666;color:#333333;text-align:left;font-size:small;}
+#twitter{line-height:20px;vertical-align:top;text-align:right;font-style:italic;color:#333;margin-top:24px;font-size:14px;}
+/*code{display:block;white-space:pre-wrap}*/
+pre{margin-left:24px}
+blockquote{border-left: solid 1px #666;}' > blog.css
     fi
 
     # If there is a style.css from the parent page (i.e. some landing page)
@@ -1046,21 +1054,21 @@ create_css() {
         ln -s "../style.css" "main.css" 
     elif [[ ! -f main.css ]]; then
         echo 'body{font-family:Georgia,"Times New Roman",Times,serif;margin:0;padding:0;background-color:#F3F3F3;}
-        #divbodyholder{padding:5px;background-color:#DDD;width:100%;max-width:874px;margin:24px auto;}
-        #divbody{border:solid 1px #ccc;background-color:#fff;padding:0px 48px 24px 48px;top:0;}
-        .headerholder{background-color:#f9f9f9;border-top:solid 1px #ccc;border-left:solid 1px #ccc;border-right:solid 1px #ccc;}
-        .header{width:100%;max-width:800px;margin:0px auto;padding-top:24px;padding-bottom:8px;}
-        .content{margin-bottom:5%;}
-        .nomargin{margin:0;}
-        .description{margin-top:10px;border-top:solid 1px #666;padding:10px 0;}
-        h3{font-size:20pt;width:100%;font-weight:bold;margin-top:32px;margin-bottom:0;}
-        .clear{clear:both;}
-        #footer{padding-top:10px;border-top:solid 1px #666;color:#333333;text-align:center;font-size:small;font-family:"Courier New","Courier",monospace;}
-        a{text-decoration:none;color:#003366 !important;}
-        a:visited{text-decoration:none;color:#336699 !important;}
-        blockquote{background-color:#f9f9f9;border-left:solid 4px #e9e9e9;margin-left:12px;padding:12px 12px 12px 24px;}
-        blockquote img{margin:12px 0px;}
-        blockquote iframe{margin:12px 0px;}' > main.css
+#divbodyholder{padding:5px;background-color:#DDD;width:100%;max-width:874px;margin:24px auto;}
+#divbody{border:solid 1px #ccc;background-color:#fff;padding:0px 48px 24px 48px;top:0;}
+.headerholder{background-color:#f9f9f9;border-top:solid 1px #ccc;border-left:solid 1px #ccc;border-right:solid 1px #ccc;}
+.header{width:100%;max-width:800px;margin:0px auto;padding-top:24px;padding-bottom:8px;}
+.content{margin-bottom:5%;}
+.nomargin{margin:0;}
+.description{margin-top:10px;border-top:solid 1px #666;padding:10px 0;}
+h3{font-size:20pt;width:100%;font-weight:bold;margin-top:32px;margin-bottom:0;}
+.clear{clear:both;}
+#footer{padding-top:10px;border-top:solid 1px #666;color:#333333;text-align:center;font-size:small;font-family:"Courier New","Courier",monospace;}
+a{text-decoration:none;color:#003366 !important;}
+a:visited{text-decoration:none;color:#336699 !important;}
+blockquote{background-color:#f9f9f9;border-left:solid 4px #e9e9e9;margin-left:12px;padding:12px 12px 12px 24px;}
+blockquote img{margin:12px 0px;}
+blockquote iframe{margin:12px 0px;}' > main.css
     fi
 }
 
