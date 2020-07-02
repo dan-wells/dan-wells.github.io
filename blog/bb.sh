@@ -468,7 +468,7 @@ create_html_page() {
         echo '<div id="title">'
         cat .title.html
         echo '</div></div></div>' # title, header, headerholder
-        echo "<div id=\"all_posts_top\"><a href=\"../$archive_index\">$template_archive</a> &mdash; <a href=\"../$tags_index\">$template_tags_title</a> &mdash; <a href=\"../$feed\">$template_subscribe</a></div>"
+        echo "<div id=\"all_posts_top\"><a href=\"/blog/$archive_index\">$template_archive</a> &mdash; <a href=\"/blog/$tags_index\">$template_tags_title</a> &mdash; <a href=\"/blog/$feed\">$template_subscribe</a></div>"
         if [[ $filename == *"$index_file"* ]]; then
             visible_posts=$number_of_index_articles
             num_posts=$(list_posts | wc -l)
@@ -482,7 +482,7 @@ create_html_page() {
         # one blog entry
         if [[ $index == no ]]; then
             echo '<!-- entry begin -->' # marks the beginning of the whole post
-            echo "<h3><a class=\"ablack\" href=\"../$file_url\">"
+            echo "<h3><a class=\"ablack\" href=\"/blog/$file_url\">"
             # remove possible <p>'s on the title because of markdown conversion
             title=${title//<p>/}
             title=${title//<\/p>/}
@@ -504,11 +504,11 @@ create_html_page() {
         fi
         cat "$content" # Actual content
         if [[ $index == no ]]; then
-            echo -e '\n<!-- text end -->'
+            echo -e '\n<!-- text end -->\n'
 
             twitter "$global_url/$file_url"
 
-            echo "<div id=\"all_posts\"><a href=\"../$index_file\">$template_archive_index_page</a></div>"
+            echo "<div id=\"all_posts\"><a href=\"/blog/$index_file\">$template_archive_index_page</a></div>"
 
             echo '<!-- entry end -->' # absolute end of the post
         fi
@@ -533,14 +533,13 @@ create_html_page() {
         # Have to use (g)awk inplace for compatibility with use of $cut_line elsewhere
         # (since sed has different escapes from other things...)
         awk -i inplace "{ gsub(/$cut_line/, \"$cut_line_body\") }; { print }" $filename 2> /dev/null
-        # Fix relative CSS references
-        sed -i 's/href="\(.*\)\.css/href="..\/\1.css/' $filename
-    elif [[ $filename != *"$prefix_tags"* ]]; then
-        # Fix relative links for index pages not in subdirs
-        awk -i inplace '/id="all_posts/ { gsub(/\.\.\//, "") }; { print }' $filename 2> /dev/null
+        # Need <!-- text end --> to be on its own line, but don't want to
+        # keep adding endless blank lines every time entries are rebuilt.
+        # Cue despicable sed antics to squash multiple newlines:
+        sed -i ':a;N;$!ba;s/\n\{3,\}/\n/g' $filename
     fi
     if [[ $filename == *"$index_file"* ]]; then
-        # Remove relative links back to index from index page
+        # Remove in-post links back to index from compiled index page
         sed -i "/id=\"all_posts\".*$index_file/d" $filename
     fi
 }
@@ -588,7 +587,7 @@ parse_file() {
 
             echo -n "<p>$template_tags_line_header " >> "$content"
             for item in "${array[@]}"; do
-                echo -n "<a href='../$prefix_tags$item.html'>$item</a>, "
+                echo -n "<a href='/blog/$prefix_tags$item.html'>$item</a>, "
             done | sed 's/, $/<\/p>/g' >> "$content"
         else
             echo "$line" >> "$content"
@@ -725,7 +724,7 @@ all_posts() {
         done < <(ls -t ./$blogpost_dir/*.html)
         echo "" 1>&3
         echo "</ul>"
-        echo "<div id=\"all_posts\"><a href=\"./$index_file\">$template_archive_index_page</a></div>"
+        echo "<div id=\"all_posts\"><a href=\"/blog/$index_file\">$template_archive_index_page</a></div>"
     } 3>&1 >"$contentfile"
 
     create_html_page "$contentfile" "$archive_index.tmp" yes "$global_title &mdash; $template_archive_title" "$global_author"
@@ -760,7 +759,7 @@ all_tags() {
         done
         echo "" 1>&3
         echo "</ul>"
-        echo "<div id=\"all_posts\"><a href=\"./$index_file\">$template_archive_index_page</a></div>"
+        echo "<div id=\"all_posts\"><a href=\"/blog/$index_file\">$template_archive_index_page</a></div>"
     } 3>&1 > "$contentfile"
 
     create_html_page "$contentfile" "$tags_index.tmp" yes "$global_title &mdash; $template_tags_title" "$global_author"
@@ -796,12 +795,8 @@ rebuild_index() {
 
         feed=$blog_feed
         if [[ -n $global_feedburner ]]; then feed=$global_feedburner; fi
-        echo "<div id=\"all_posts\"><a href=\"$archive_index\">$template_archive</a> &mdash; <a href=\"$tags_index\">$template_tags_title</a> &mdash; <a href=\"$feed\">$template_subscribe</a></div>"
+        echo "<div id=\"all_posts\"><a href=\"/blog/$archive_index\">$template_archive</a> &mdash; <a href=\"/blog/$tags_index\">$template_tags_title</a> &mdash; <a href=\"/blog/$feed\">$template_subscribe</a></div>"
     } 3>&1 >"$contentfile"
-
-    # Fix relative links to blog titles and tag pages
-    sed -i "s|\.\./$blogpost_dir|$blogpost_dir|g" $contentfile
-    sed -i "s|\.\./$prefix_tags|$prefix_tags|g" $contentfile
 
     echo ""
 
@@ -825,7 +820,7 @@ posts_with_tags() {
     (($# < 1)) && return
     set -- "${@/#/$prefix_tags}"
     set -- "${@/%/.html}"
-    sed -n '/^<h3><a class="ablack" href="[^"]*">/{s/.*href="\.\.\/\([^"]*\)">.*/\1/;p;}' "$@" 2> /dev/null
+    sed -n '/^<h3><a class="ablack" href="[^"]*">/{s/.*href="\([^"]*\)">.*/\1/;p;}' "$@" 2> /dev/null
 }
 
 # Rebuilds tag_*.html files
@@ -882,8 +877,6 @@ rebuild_tags() {
         tagname=${tagname%.tmp.html}
         create_html_page "$i" "$prefix_tags$tagname.html" yes "$global_title &mdash; $template_tag_title \"$tagname\"" "$global_author"
         rm "$i"
-        # Fix relative CSS references
-        sed -i 's/href="\(.*\)\.css/href="..\/\1.css/' "$prefix_tags$tagname.html"
     done < <(ls -t ./"$prefix_tags"*.tmp.html 2>/dev/null)
     echo
 }
@@ -1029,7 +1022,7 @@ delete_includes() {
 create_css() {
     # To avoid overwriting manual changes. However it is recommended that
     # this function is modified if the user changes the blog.css file
-    (( ${#css_include[@]} > 0 )) && return || css_include=('main.css' 'blog.css')
+    (( ${#css_include[@]} > 0 )) || css_include=('main.css' 'blog.css')
     if [[ ! -f blog.css ]]; then 
         # blog.css directives will be loaded after main.css and thus will prevail
         echo '#title{font-size: large;}

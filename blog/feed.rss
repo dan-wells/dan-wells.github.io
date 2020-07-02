@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
-<channel><title>wellsd Blog</title><link>https://wellsd.net/blog/index.html</link>
+<channel><title>wellsd Blog</title><link>/blog/index.html</link>
 <description></description><language>en</language>
-<lastBuildDate>Wed, 01 Jul 2020 20:22:03 +0100</lastBuildDate>
-<pubDate>Wed, 01 Jul 2020 20:22:03 +0100</pubDate>
-<atom:link href="https://wellsd.net/blog/feed.rss" rel="self" type="application/rss+xml" />
+<lastBuildDate>Thu, 02 Jul 2020 01:40:03 +0100</lastBuildDate>
+<pubDate>Thu, 02 Jul 2020 01:40:03 +0100</pubDate>
+<atom:link href="/blog/feed.rss" rel="self" type="application/rss+xml" />
 <item><title>
 Fun with formatting
 </title><description><![CDATA[
@@ -56,23 +56,15 @@ Indenting by four spaces seems better for actual code blocks, because then there
 <li>And another one</li>
 <li>One more for good measure</li>
 </ul>
-
-
 <p>Wonder what the spacing at the bottom is like?</p>
 
-<p>Tags: <a href='../tags/tag_formatting-fun.html'>formatting-fun</a></p>
-
-
-
-
-
-
-
+<p>Tags: <a href='/blog/tags/tag_formatting-fun.html'>formatting-fun</a></p>
 
 <!-- text end -->
-<div id="all_posts"><a href="../index.html">Back to the index page</a></div>
-]]></description><link>https://wellsd.net/blog/posts/fun-with-formatting.html</link>
-<guid>https://wellsd.net/blog/./posts/fun-with-formatting.html</guid>
+
+<div id="all_posts"><a href="/blog/index.html">Back to the index page</a></div>
+]]></description><link>/blog/posts/fun-with-formatting.html</link>
+<guid>/blog/./posts/fun-with-formatting.html</guid>
 <dc:creator>Dan Wells</dc:creator>
 <pubDate>Wed, 01 Jul 2020 19:20:02 +0100</pubDate></item>
 <item><title>
@@ -81,19 +73,13 @@ First post
 
 <p>This is just an example of what we can do with a simple bashblog.</p>
 
-<p>Tags: <a href='../tags/tag_example.html'>example</a></p>
-
-
-
-
-
-
-
+<p>Tags: <a href='/blog/tags/tag_example.html'>example</a></p>
 
 <!-- text end -->
-<div id="all_posts"><a href="../index.html">Back to the index page</a></div>
-]]></description><link>https://wellsd.net/blog/posts/first-post.html</link>
-<guid>https://wellsd.net/blog/./posts/first-post.html</guid>
+
+<div id="all_posts"><a href="/blog/index.html">Back to the index page</a></div>
+]]></description><link>/blog/posts/first-post.html</link>
+<guid>/blog/./posts/first-post.html</guid>
 <dc:creator>Dan Wells</dc:creator>
 <pubDate>Wed, 01 Jul 2020 17:58:19 +0100</pubDate></item>
 </channel></rss>
