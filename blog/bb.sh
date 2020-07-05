@@ -5,6 +5,7 @@
 # https://github.com/carlesfe/bashblog/contributors
 # Check out README.md for more details
 
+# TODO: Add <hr>s to divide posts on index page
 # TODO: Move tags to small text underneath post date
 # TODO: Add text link to homepage alongside post and tag index links
 # TODO: Rethink all those m-dashes
@@ -1038,7 +1039,7 @@ h1{margin-bottom:12px !important;}
 h3{margin-top:12px;margin-bottom:8px;}
 h4{margin-left:24px;margin-right:24px;}
 img{max-width:100%;}
-#divbodyholder{padding-left:10px;}
+#divbodyholder{padding-left:10px;padding-right:10px;}
 #footer{margin-top:10px;padding-top:10px;border-top:solid 1px #666;color:#333333;text-align:left;font-size:small;}
 #twitter{line-height:20px;vertical-align:top;text-align:right;font-style:italic;color:#333;margin-top:24px;font-size:14px;}
 /*code{display:block;white-space:pre-wrap}*/
