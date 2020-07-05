@@ -541,6 +541,9 @@ create_html_page() {
         # keep adding endless blank lines every time entries are rebuilt.
         # Cue despicable sed antics to squash multiple newlines:
         sed -i ':a;N;$!ba;s/\n\{3,\}/\n/g' $filename
+    else
+        # Fix any outstanding relative links or readmores
+        sed -Ei "s/href=\"(\.\/)?($blogpost_dir|$tagfile_dir)/href=\"\/blog\/\2/" $filename
     fi
     if [[ $filename == *"$index_file"* ]]; then
         # Remove in-post links back to index from compiled index page
