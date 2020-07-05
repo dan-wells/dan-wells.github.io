@@ -722,12 +722,9 @@ all_posts() {
                 echo "<ul>"
                 prev_month=$month
             fi
-            # Title
             title=$(get_post_title "$i")
-            echo -n "<li><a href=\"$i\">$title</a> &mdash;"
-            # Date
             date=$(LC_ALL=$date_locale date -r "$i" +"$date_format")
-            echo " $date</li>"
+            echo "<li>$date &mdash; <a href=\"$i\">$title</a></li>"
         done < <(ls -t ./$blogpost_dir/*.html)
         echo "" 1>&3
         echo "</ul>"
