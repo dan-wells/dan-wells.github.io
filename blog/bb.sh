@@ -325,7 +325,7 @@ create_html_page() {
         echo '<div id="title">'
         cat .title.html
         echo '</div></div></div>' # title, header, headerholder
-        echo "<div id=\"all_posts_top\"><a href=\"/blog/$index_file\">$template_blog_index</a> | <a href=\"/blog/$archive_index\">$template_archive</a> | <a href=\"/blog/$tags_index\">$template_tags_title</a> | <a href=\"$global_author_url\">$template_home_page</a></div>"
+        echo -e "<nav>\n<a href=\"/blog/$index_file\">$template_blog_index</a> |\n<a href=\"/blog/$archive_index\">$template_archive</a> |\n<a href=\"/blog/$tags_index\">$template_tags_title</a> |\n<a href=\"/\">$template_home_page</a>\n</nav>"
         if [[ $filename == *"$index_file"* ]]; then
             visible_posts=$number_of_index_articles
             num_posts=$(list_posts | wc -l)
@@ -391,10 +391,6 @@ create_html_page() {
     else
         # Fix any outstanding relative links or readmores
         sed -Ei "s/href=\"(\.\/)?($blogpost_dir|$tagfile_dir)/href=\"\/blog\/\2/" $filename
-    fi
-    if [[ $filename == *"$index_file"* ]]; then
-        # Remove in-post links back to index from compiled index page
-        sed -i "/id=\"all_posts\".*$index_file/d" $filename
     fi
 }
 
@@ -855,7 +851,7 @@ create_includes() {
         protected_mail=${global_email//@/&#64;}
         protected_mail=${protected_mail//./&#46;}
         echo '<div id="footer"><hr class="no-cut"/>'
-        echo "Generated with <a href=\"https://github.com/cfenollosa/bashblog\">bashblog</a>, a single bash script to easily create blogs like this one."
+        echo -e "Generated with <a href=\"https://github.com/cfenollosa/bashblog\">bashblog</a>,\na single bash script to easily create blogs like this one."
         echo "<a href=\"/blog/$blog_feed\">$template_subscribe</a> <img class=\"icon\" src=\"/rss.png\"/></div>"
         } >> ".footer.html"
     fi
@@ -877,8 +873,7 @@ create_css() {
 a.ablack{color:black !important;}
 li{margin-bottom:8px;}
 ul,ol{margin-left:24px;margin-right:24px;}
-#all_posts{margin-top:8px;margin-bottom:8px;text-align:left;}
-#all_posts_top{margin-top:8px;margin-bottom:8px;text-align:left;}
+nav{margin-top:8px;margin-bottom:8px;text-align:left;}
 .subtitle{font-size:small;margin:4px 0px;}
 .content p{margin-left:24px;margin-right:24px;}
 .tags p{font-size:small;margin:12px 0px;}
