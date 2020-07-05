@@ -5,8 +5,6 @@
 # https://github.com/carlesfe/bashblog/contributors
 # Check out README.md for more details
 
-# TODO: Add text link to homepage alongside post and tag index links
-#       Maybe 'Blog -- All posts -- All tags -- Homepage'?
 # TODO: Rethink all those m-dashes
 
 # debug functions
@@ -142,6 +140,10 @@ global_variables() {
     template_archive_title="All posts"
     # "All tags"
     template_tags_title="All tags"
+    # "Blog" (link to blog index page)
+    template_blog_index="Blog"
+    # "Home" (link to homepage at global author URL)
+    template_home_page="Home"
     # "posts" (on "All tags" page, text at the end of each tag line, like "2. Music - 15 posts")
     template_tags_posts="posts"
     template_tags_posts_2_4="posts"  # Some slavic languages use a different plural form for 2-4 items
@@ -454,7 +456,11 @@ create_html_page() {
     # html, head
     {
         cat ".header.html"
-        echo "<title>$title</title>"
+        if [[ ! $filename = *"$index_file"* ]]; then
+            echo "<title>$global_title - $title</title>"
+        else
+            echo "<title>$title</title>"
+        fi
         google_analytics
         twitter_card "$content" "$title"
         echo "</head><body>"
@@ -468,14 +474,13 @@ create_html_page() {
         echo '<div id="title">'
         cat .title.html
         echo '</div></div></div>' # title, header, headerholder
-        echo "<div id=\"all_posts_top\"><a href=\"/blog/$archive_index\">$template_archive</a> &mdash; <a href=\"/blog/$tags_index\">$template_tags_title</a></div>"
+        echo "<div id=\"all_posts_top\"><a href=\"/blog/$index_file\">$template_blog_index</a> | <a href=\"/blog/$archive_index\">$template_archive</a> | <a href=\"/blog/$tags_index\">$template_tags_title</a> | <a href=\"$global_author_url\">$template_home_page</a></div>"
         if [[ $filename == *"$index_file"* ]]; then
             visible_posts=$number_of_index_articles
             num_posts=$(list_posts | wc -l)
             (( num_posts < number_of_index_articles )) && visible_posts=$num_posts
             echo "Showing $visible_posts/$num_posts posts"
         fi
-        echo '<hr class="no-cut"/>'
         echo '<div id="divbody"><div class="content">'
 
         file_url=${filename#./}
@@ -484,6 +489,7 @@ create_html_page() {
         if [[ $index == no ]]; then
             echo '<!-- entry begin -->' # marks the beginning of the whole post
             echo '<div class="entry">'
+            echo '<hr class="no-cut"/>'
             echo "<h3><a class=\"ablack\" href=\"/blog/$file_url\">"
             # remove possible <p>'s on the title because of markdown conversion
             title=${title//<p>/}
@@ -500,7 +506,6 @@ create_html_page() {
             else
                 echo -n "<div class=\"subtitle\">$(LC_ALL=$date_locale date +"$date_format" --date="$timestamp")"
             fi
-            [[ -n $author ]] && echo -e " &mdash; \n$author"
             echo "</div>"
             echo '<!-- text begin -->' # This marks the text body, after the title, date...
         fi
@@ -508,11 +513,8 @@ create_html_page() {
         if [[ $index == no ]]; then
             echo -e '\n<!-- text end -->\n'
             echo '</div>' # entry div
-            echo '<hr class="no-cut"/>'
 
             twitter "$global_url/$file_url"
-
-            echo "<div id=\"all_posts\"><a href=\"/blog/$index_file\">$template_archive_index_page</a></div>"
 
             echo '<!-- entry end -->' # absolute end of the post
         fi
@@ -709,6 +711,7 @@ all_posts() {
     done
 
     {
+        echo '<hr class="no-cut"/>'
         echo "<h3>$template_archive_title</h3>"
         prev_month=""
         while IFS='' read -r i; do
@@ -724,15 +727,13 @@ all_posts() {
             fi
             title=$(get_post_title "$i")
             date=$(LC_ALL=$date_locale date -r "$i" +"$date_format")
-            echo "<li>$date &mdash; <a href=\"$i\">$title</a></li>"
+            echo "<li>$date - <a href=\"$i\">$title</a></li>"
         done < <(ls -t ./$blogpost_dir/*.html)
         echo "" 1>&3
         echo "</ul>"
-        echo '<hr class="no-cut"/>'
-        echo "<div id=\"all_posts\"><a href=\"/blog/$index_file\">$template_archive_index_page</a></div>"
     } 3>&1 >"$contentfile"
 
-    create_html_page "$contentfile" "$archive_index.tmp" yes "$global_title &mdash; $template_archive_title" "$global_author"
+    create_html_page "$contentfile" "$archive_index.tmp" yes "$template_archive_title" "$global_author"
     mv "$archive_index.tmp" "$archive_index"
     chmod 644 "$archive_index"
     rm "$contentfile"
@@ -747,6 +748,7 @@ all_tags() {
     done
 
     {
+        echo '<hr class="no-cut"/>'
         echo "<h3>$template_tags_title</h3>"
         echo "<ul>"
         for i in $prefix_tags*.html; do
@@ -760,15 +762,13 @@ all_tags() {
                 2|3|4) word=$template_tags_posts_2_4;;
                 *) word=$template_tags_posts;;
             esac
-            echo "<li><a href=\"$i\">$tagname</a> &mdash; $nposts $word</li>"
+            echo "<li><a href=\"$i\">$tagname</a> - $nposts $word</li>"
         done
         echo "" 1>&3
         echo "</ul>"
-        echo '<hr class="no-cut"/>'
-        echo "<div id=\"all_posts\"><a href=\"/blog/$index_file\">$template_archive_index_page</a></div>"
     } 3>&1 > "$contentfile"
 
-    create_html_page "$contentfile" "$tags_index.tmp" yes "$global_title &mdash; $template_tags_title" "$global_author"
+    create_html_page "$contentfile" "$tags_index.tmp" yes "$template_tags_title" "$global_author"
     mv "$tags_index.tmp" "$tags_index"
     chmod 644 "$tags_index"
     rm "$contentfile"
@@ -799,9 +799,6 @@ rebuild_index() {
             n=$(( n + 1 ))
         done < <(ls -t ./$blogpost_dir/*.html) # sort by date, newest first
 
-        feed=$blog_feed
-        if [[ -n $global_feedburner ]]; then feed=$global_feedburner; fi
-        echo "<div id=\"all_posts\"><a href=\"/blog/$archive_index\">$template_archive</a> &mdash; <a href=\"/blog/$tags_index\">$template_tags_title</a></div>"
     } 3>&1 >"$contentfile"
 
     echo ""
@@ -881,7 +878,7 @@ rebuild_tags() {
     while IFS='' read -r i; do
         tagname=${i#./"$prefix_tags"}
         tagname=${tagname%.tmp.html}
-        create_html_page "$i" "$prefix_tags$tagname.html" yes "$global_title &mdash; $template_tag_title \"$tagname\"" "$global_author"
+        create_html_page "$i" "$prefix_tags$tagname.html" yes "$template_tag_title \"$tagname\"" "$global_author"
         rm "$i"
     done < <(ls -t ./"$prefix_tags"*.tmp.html 2>/dev/null)
     echo
@@ -1017,7 +1014,8 @@ create_includes() {
         protected_mail=${global_email//@/&#64;}
         protected_mail=${protected_mail//./&#46;}
         echo '<div id="footer"><hr class="no-cut"/>'
-        echo -e "\nGenerated with <a href=\"https://github.com/cfenollosa/bashblog\">bashblog</a>, a single bash script to easily create blogs like this one. <a href=\"/blog/$blog_feed\">$template_subscribe</a></div>"
+        echo "Generated with <a href=\"https://github.com/cfenollosa/bashblog\">bashblog</a>, a single bash script to easily create blogs like this one."
+        echo "<a href=\"/blog/$blog_feed\">$template_subscribe</a> <img class=\"icon\" src=\"/rss.png\"/></div>"
         } >> ".footer.html"
     fi
 }
