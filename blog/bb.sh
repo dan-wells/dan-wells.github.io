@@ -1013,8 +1013,11 @@ create_includes() {
     else {
         protected_mail=${global_email//@/&#64;}
         protected_mail=${protected_mail//./&#46;}
-        echo "<div id=\"footer\"><hr class="no-cut"/>$global_license <a href=\"$global_author_url\">$global_author</a> &mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
-        echo 'Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>'
+        echo '<div id="footer"><hr class="no-cut"/>'
+        [[ -n "$global_license" ]] && echo -n "$global_license "
+        [[ -n "$global_author" ]] && echo -n "<a href=\"$global_author_url\">$global_author</a>" 
+        [[ -n "$global_mail" ]] && echo -n "&mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
+        echo -e '\nGenerated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>'
         } >> ".footer.html"
     fi
 }
@@ -1035,14 +1038,14 @@ create_css() {
 a.ablack{color:black !important;}
 li{margin-bottom:8px;}
 ul,ol{margin-left:24px;margin-right:24px;}
-#all_posts{margin-top:12px;margin-bottom:12px;text-align:left;}
-#all_posts_top{margin-top:12px;margin-bottom:12px;text-align:left;}
-.subtitle{font-size:small;margin:12px 0px;}
+#all_posts{margin-top:8px;margin-bottom:8px;text-align:left;}
+#all_posts_top{margin-top:8px;margin-bottom:8px;text-align:left;}
+.subtitle{font-size:small;margin:4px 0px;}
 .content p{margin-left:24px;margin-right:24px;}
 .tags p{font-size:small;margin:12px 0px;}
 h1{margin-bottom:12px !important;}
 #description{font-size:large;margin-bottom:12px;}
-h3{margin-top:12px;margin-bottom:8px;}
+h3{margin-top:12px;margin-bottom:4px;}
 h4{margin-left:24px;margin-right:24px;}
 img{max-width:100%;}
 #divbodyholder{padding-left:10px;padding-right:10px;}
