@@ -7,7 +7,6 @@
 
 # TODO: Add text link to homepage alongside post and tag index links
 #       Maybe 'Blog -- All posts -- All tags -- Homepage'?
-# TODO: Remove RSS and links to feed? Or maybe just move subscribe link to footer
 # TODO: Rethink all those m-dashes
 
 # debug functions
@@ -94,11 +93,12 @@ global_variables() {
 
     # feed file (rss in this case)
     blog_feed="feed.rss"
-    number_of_feed_articles="10"
+    number_of_feed_articles="8"
 
     # "cut" blog entry when putting it to index page. Leave blank for full articles in front page
     # i.e. include only up to first '<hr>', or '----' in markdown
     cut_do="cut"
+    rss_cut_do="no"
     # When cutting, cut also tags? If "no", tags will appear in index page for cut articles
     cut_tags="no"
     # Regexp matching the HTML line where to do the cut
@@ -468,7 +468,7 @@ create_html_page() {
         echo '<div id="title">'
         cat .title.html
         echo '</div></div></div>' # title, header, headerholder
-        echo "<div id=\"all_posts_top\"><a href=\"/blog/$archive_index\">$template_archive</a> &mdash; <a href=\"/blog/$tags_index\">$template_tags_title</a> &mdash; <a href=\"/blog/$feed\">$template_subscribe</a></div>"
+        echo "<div id=\"all_posts_top\"><a href=\"/blog/$archive_index\">$template_archive</a> &mdash; <a href=\"/blog/$tags_index\">$template_tags_title</a></div>"
         if [[ $filename == *"$index_file"* ]]; then
             visible_posts=$number_of_index_articles
             num_posts=$(list_posts | wc -l)
@@ -801,7 +801,7 @@ rebuild_index() {
 
         feed=$blog_feed
         if [[ -n $global_feedburner ]]; then feed=$global_feedburner; fi
-        echo "<div id=\"all_posts\"><a href=\"/blog/$archive_index\">$template_archive</a> &mdash; <a href=\"/blog/$tags_index\">$template_tags_title</a> &mdash; <a href=\"/blog/$feed\">$template_subscribe</a></div>"
+        echo "<div id=\"all_posts\"><a href=\"/blog/$archive_index\">$template_archive</a> &mdash; <a href=\"/blog/$tags_index\">$template_tags_title</a></div>"
     } 3>&1 >"$contentfile"
 
     echo ""
@@ -965,23 +965,26 @@ make_rss() {
         n=0
         while IFS='' read -r i; do
             is_boilerplate_file "$i" && continue
-            ((n >= number_of_feed_articles)) && break # max 10 items
+            ((n >= number_of_feed_articles)) && break # max 8 items
             echo -n "." 1>&3
             echo '<item><title>' 
             get_post_title "$i"
             echo '</title><description><![CDATA[' 
-            get_html_file_content 'text' 'entry' $cut_do <"$i"
+            get_html_file_content 'text' 'text' $rss_cut_do <"$i"
             echo "]]></description><link>$global_url/${i#./}</link>" 
             echo "<guid>$global_url/$i</guid>" 
-            echo "<dc:creator>$(get_post_author "$i")</dc:creator>" 
+            echo "<dc:creator>$global_author</dc:creator>"
             echo "<pubDate>$(LC_ALL=C date -r "$i" +"$date_format_full")</pubDate></item>"
     
             n=$(( n + 1 ))
-        done < <(ls -t ./$blogpost_dir/*.html)
+        done < <(ls -t $blogpost_dir/*.html)
     
         echo '</channel></rss>'
     } 3>&1 >"$rssfile"
     echo ""
+
+    # Remove any cut markers
+    sed -i "/($cut_line\|$cut_line_body/d" "$rssfile"
 
     mv "$rssfile" "$blog_feed"
     chmod 644 "$blog_feed"
@@ -990,7 +993,7 @@ make_rss() {
 # generate headers, footers, etc
 create_includes() {
     {
-        echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title</a></h1>" 
+        echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"/blog/$index_file\">$global_title</a></h1>"
         echo "<div id=\"description\">$global_description</div>"
     } > ".title.html"
 
@@ -1002,7 +1005,7 @@ create_includes() {
         echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />'
         printf '<link rel="stylesheet" href="%s" type="text/css" />\n' "${css_include[@]}"
         if [[ -z $global_feedburner ]]; then
-            echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"$template_subscribe_browser_button\" href=\"$blog_feed\" />"
+            echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"$template_subscribe_browser_button\" href=\"/blog/$blog_feed\" />"
         else 
             echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"$template_subscribe_browser_button\" href=\"$global_feedburner\" />"
         fi
@@ -1014,10 +1017,7 @@ create_includes() {
         protected_mail=${global_email//@/&#64;}
         protected_mail=${protected_mail//./&#46;}
         echo '<div id="footer"><hr class="no-cut"/>'
-        [[ -n "$global_license" ]] && echo -n "$global_license "
-        [[ -n "$global_author" ]] && echo -n "<a href=\"$global_author_url\">$global_author</a>" 
-        [[ -n "$global_mail" ]] && echo -n "&mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
-        echo -e '\nGenerated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>'
+        echo -e "\nGenerated with <a href=\"https://github.com/cfenollosa/bashblog\">bashblog</a>, a single bash script to easily create blogs like this one. <a href=\"/blog/$blog_feed\">$template_subscribe</a></div>"
         } >> ".footer.html"
     fi
 }

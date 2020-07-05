@@ -1,33 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="/style.css" type="text/css" />
-<link rel="stylesheet" href="/blog/blog.css" type="text/css" />
-<link rel="alternate" type="application/rss+xml" title="Subscribe to this page..." href="/blog/rss.xml" />
-<title>Fun with formatting</title>
-</head><body>
-<div id="divbodyholder">
-<div class="headerholder"><div class="header">
-<div id="title">
-<h1 class="nomargin"><a class="ablack" href="/blog/index.html">wellsd Blog</a></h1>
-<div id="description"></div>
-</div></div></div>
-<div id="all_posts_top"><a href="/blog/all_posts.html">All posts</a> &mdash; <a href="/blog/all_tags.html">All tags</a></div>
-<hr class="no-cut"/>
-<div id="divbody"><div class="content">
-<!-- entry begin -->
-<div class="entry">
-<h3><a class="ablack" href="/blog/posts/fun-with-formatting.html">
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel><title>wellsd Blog</title><link>https://wellsd.net/blog/index.html</link>
+<description></description><language>en</language>
+<lastBuildDate>Sun, 05 Jul 2020 21:05:18 +0100</lastBuildDate>
+<pubDate>Sun, 05 Jul 2020 21:05:18 +0100</pubDate>
+<atom:link href="https://wellsd.net/blog/rss.xml" rel="self" type="application/rss+xml" />
+<item><title>
 Fun with formatting
-</a></h3>
-<!-- bashblog_timestamp: #202007011920.02# -->
-<div class="subtitle">01 July 2020</div>
-<!-- text begin -->
+</title><description><![CDATA[
 
 <p>Since I never remember which way round headings go in markdown, let's have a play around.</p>
 
-<!--hr /-->
 
 <h1>Heading 1</h1>
 
@@ -80,15 +63,20 @@ Indenting by four spaces seems better for actual code blocks, because then there
 <p>Wonder what the spacing at the bottom is like?</p>
 
 <div class="tags"><p>Tags: <a href='/blog/tags/tag_formatting-fun.html'>formatting-fun</a></p></div>
-<!-- text end -->
+]]></description><link>https://wellsd.net/blog/posts/fun-with-formatting.html</link>
+<guid>https://wellsd.net/blog/posts/fun-with-formatting.html</guid>
+<dc:creator>Dan Wells</dc:creator>
+<pubDate>Wed, 01 Jul 2020 19:20:02 +0100</pubDate></item>
+<item><title>
+First post
+</title><description><![CDATA[
 
-</div>
-<hr class="no-cut"/>
-<div id="all_posts"><a href="/blog/index.html">Back to the index page</a></div>
-<!-- entry end -->
-</div>
-<div id="footer"><hr class="no-cut"/>
+<p>This is just an example of what we can do with a simple bashblog.</p>
 
-Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one. <a href="/blog/rss.xml">Subscribe</a></div>
-</div></div>
-</body></html>
+<div class="tags"><p>Tags: <a href='/blog/tags/tag_example.html'>example</a></p></div>
+
+]]></description><link>https://wellsd.net/blog/posts/first-post.html</link>
+<guid>https://wellsd.net/blog/posts/first-post.html</guid>
+<dc:creator>Dan Wells</dc:creator>
+<pubDate>Wed, 01 Jul 2020 17:58:19 +0100</pubDate></item>
+</channel></rss>
