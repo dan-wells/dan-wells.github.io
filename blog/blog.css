@@ -6,6 +6,7 @@ ul,ol{margin-left:24px;margin-right:24px;}
 #all_posts_top{margin-top:12px;margin-bottom:12px;text-align:left;}
 .subtitle{font-size:small;margin:12px 0px;}
 .content p{margin-left:24px;margin-right:24px;}
+.tags p{font-size:small;margin:12px 0px;}
 h1{margin-bottom:12px !important;}
 #description{font-size:large;margin-bottom:12px;}
 h3{margin-top:12px;margin-bottom:8px;}

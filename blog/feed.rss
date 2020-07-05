@@ -2,8 +2,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>wellsd Blog</title><link>/blog/index.html</link>
 <description></description><language>en</language>
-<lastBuildDate>Sun, 05 Jul 2020 15:53:59 +0100</lastBuildDate>
-<pubDate>Sun, 05 Jul 2020 15:53:59 +0100</pubDate>
+<lastBuildDate>Sun, 05 Jul 2020 16:12:59 +0100</lastBuildDate>
+<pubDate>Sun, 05 Jul 2020 16:12:59 +0100</pubDate>
 <atom:link href="/blog/feed.rss" rel="self" type="application/rss+xml" />
 <item><title>
 Fun with formatting
@@ -12,7 +12,7 @@ Fun with formatting
 <p>Since I never remember which way round headings go in markdown, let's have a play around.</p>
 
 <!--hr /-->
-<p>Tags: <a href='/blog/tags/tag_formatting-fun.html'>formatting-fun</a></p>
+<div class="tags"><p>Tags: <a href='/blog/tags/tag_formatting-fun.html'>formatting-fun</a></p></div>
 
 </div>
 <hr class="no-cut"/>
@@ -27,8 +27,7 @@ First post
 
 <p>This is just an example of what we can do with a simple bashblog.</p>
 
-<p>Tags: <a href='/blog/tags/tag_example.html'>example</a></p>
-
+<div class="tags"><p>Tags: <a href='/blog/tags/tag_example.html'>example</a></p></div>
 <!-- text end -->
 
 </div>

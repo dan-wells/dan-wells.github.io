@@ -5,11 +5,10 @@
 # https://github.com/carlesfe/bashblog/contributors
 # Check out README.md for more details
 
-# TODO: Add <hr>s to divide posts on index page
-# TODO: Move tags to small text underneath post date
 # TODO: Add text link to homepage alongside post and tag index links
-# TODO: Rethink all those m-dashes
+#       Maybe 'Blog -- All posts -- All tags -- Homepage'?
 # TODO: Remove RSS and links to feed? Or maybe just move subscribe link to footer
+# TODO: Rethink all those m-dashes
 
 # debug functions
 #set -eE -o functrace
@@ -290,7 +289,7 @@ get_html_file_content() {
         if (\"$3\" == \"cut\" && /$cut_line|$cut_line_body/){
             if (\"$2\" == \"text\") exit # no need to read further
             while (getline > 0 && !/<!-- text end -->/) {
-                if (\"$cut_tags\" == \"no\" && /^<p>$template_tags_line_header/ ) print 
+                if (\"$cut_tags\" == \"no\" && /^<div class=\"tags\"><p>$template_tags_line_header/ ) print
             }
         }
     }"
@@ -334,7 +333,7 @@ edit() {
             # Title
             get_post_title "$1" > "$TMPFILE"
             # Post text with plaintext tags
-            get_html_file_content 'text' 'text' <"$1" | sed "/^<p>$template_tags_line_header/s|<a href='$prefix_tags\([^']*\).html'>\\1</a>|\\1|g" >> "$TMPFILE"
+            get_html_file_content 'text' 'text' <"$1" | sed "/^<div class=\"tags\"><p>$template_tags_line_header/s|<a href='$prefix_tags\([^']*\).html'>\\1</a>|\\1|g" >> "$TMPFILE"
             $EDITOR "$TMPFILE"
             filename=$1
         fi
@@ -369,7 +368,7 @@ twitter_card() {
     echo "<meta name='twitter:card' content='summary' />"
     echo "<meta name='twitter:site' content='@$global_twitter_username' />"
     echo "<meta name='twitter:title' content='$2' />" # Twitter truncates at 70 char
-    description=$(grep -v "^<p>$template_tags_line_header" "$1" | sed -e 's/<[^>]*>//g' | tr '\n' ' ' | sed "s/\"/'/g" | head -c 250) 
+    description=$(grep -v "^<div class=\"tags\"><p>$template_tags_line_header" "$1" | sed -e 's/<[^>]*>//g' | tr '\n' ' ' | sed "s/\"/'/g" | head -c 250)
     echo "<meta name='twitter:description' content=\"$description\" />"
     image=$(sed -n '2,$ d; s/.*<img.*src="\([^"]*\)".*/\1/p' "$1") # First image is fine
     [[ -z $image ]] && return
@@ -817,7 +816,7 @@ rebuild_index() {
 # Accepts either filename as first argument, or post content at stdin
 # Prints one line with space-separated tags to stdout
 tags_in_post() {
-    sed -n "/^<p>$template_tags_line_header/{s/^<p>$template_tags_line_header//;s/<[^>]*>//g;s/[ ,]\+/ /g;p;}" "$1" | tr ', ' ' '
+    sed -n "/^<div class=\"tags\"><p>$template_tags_line_header/{s/^<div class=\"tags\"><p>$template_tags_line_header//;s/<[^>]*>//g;s/[ ,]\+/ /g;p;}" "$1" | tr ', ' ' '
 }
 
 # Finds all posts referenced in a number of tags.
@@ -1040,6 +1039,7 @@ ul,ol{margin-left:24px;margin-right:24px;}
 #all_posts_top{margin-top:12px;margin-bottom:12px;text-align:left;}
 .subtitle{font-size:small;margin:12px 0px;}
 .content p{margin-left:24px;margin-right:24px;}
+.tags p{font-size:small;margin:12px 0px;}
 h1{margin-bottom:12px !important;}
 #description{font-size:large;margin-bottom:12px;}
 h3{margin-top:12px;margin-bottom:8px;}
