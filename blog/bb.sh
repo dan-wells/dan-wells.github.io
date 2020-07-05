@@ -476,6 +476,7 @@ create_html_page() {
             (( num_posts < number_of_index_articles )) && visible_posts=$num_posts
             echo "Showing $visible_posts/$num_posts posts"
         fi
+        echo '<hr class="no-cut"/>'
         echo '<div id="divbody"><div class="content">'
 
         file_url=${filename#./}
@@ -483,6 +484,7 @@ create_html_page() {
         # one blog entry
         if [[ $index == no ]]; then
             echo '<!-- entry begin -->' # marks the beginning of the whole post
+            echo '<div class="entry">'
             echo "<h3><a class=\"ablack\" href=\"/blog/$file_url\">"
             # remove possible <p>'s on the title because of markdown conversion
             title=${title//<p>/}
@@ -506,6 +508,8 @@ create_html_page() {
         cat "$content" # Actual content
         if [[ $index == no ]]; then
             echo -e '\n<!-- text end -->\n'
+            echo '</div>' # entry div
+            echo '<hr class="no-cut"/>'
 
             twitter "$global_url/$file_url"
 
@@ -586,10 +590,10 @@ parse_file() {
             tags=$(echo "$line" | cut -d ":" -f 2- | sed -e 's/<\/p>//g' -e 's/^ *//' -e 's/ *$//' -e 's/, /,/g')
             IFS=, read -r -a array <<< "$tags"
 
-            echo -n "<p>$template_tags_line_header " >> "$content"
+            echo -n "<div class=\"tags\"><p>$template_tags_line_header " >> "$content"
             for item in "${array[@]}"; do
                 echo -n "<a href='/blog/$prefix_tags$item.html'>$item</a>, "
-            done | sed 's/, $/<\/p>/g' >> "$content"
+            done | sed 's/, $/<\/p><\/div>/g' >> "$content"
         else
             echo "$line" >> "$content"
         fi
@@ -725,6 +729,7 @@ all_posts() {
         done < <(ls -t ./$blogpost_dir/*.html)
         echo "" 1>&3
         echo "</ul>"
+        echo '<hr class="no-cut"/>'
         echo "<div id=\"all_posts\"><a href=\"/blog/$index_file\">$template_archive_index_page</a></div>"
     } 3>&1 >"$contentfile"
 
@@ -760,6 +765,7 @@ all_tags() {
         done
         echo "" 1>&3
         echo "</ul>"
+        echo '<hr class="no-cut"/>'
         echo "<div id=\"all_posts\"><a href=\"/blog/$index_file\">$template_archive_index_page</a></div>"
     } 3>&1 > "$contentfile"
 
@@ -1008,7 +1014,7 @@ create_includes() {
     else {
         protected_mail=${global_email//@/&#64;}
         protected_mail=${protected_mail//./&#46;}
-        echo "<div id=\"footer\">$global_license <a href=\"$global_author_url\">$global_author</a> &mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
+        echo "<div id=\"footer\"><hr class="no-cut"/>$global_license <a href=\"$global_author_url\">$global_author</a> &mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
         echo 'Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>'
         } >> ".footer.html"
     fi
@@ -1030,8 +1036,8 @@ create_css() {
 a.ablack{color:black !important;}
 li{margin-bottom:8px;}
 ul,ol{margin-left:24px;margin-right:24px;}
-#all_posts{margin-top:24px;text-align:left;}
-#all_posts_top{margin-top:12px;margin-bottom:10px;text-align:left;}
+#all_posts{margin-top:12px;margin-bottom:12px;text-align:left;}
+#all_posts_top{margin-top:12px;margin-bottom:12px;text-align:left;}
 .subtitle{font-size:small;margin:12px 0px;}
 .content p{margin-left:24px;margin-right:24px;}
 h1{margin-bottom:12px !important;}
@@ -1040,7 +1046,7 @@ h3{margin-top:12px;margin-bottom:8px;}
 h4{margin-left:24px;margin-right:24px;}
 img{max-width:100%;}
 #divbodyholder{padding-left:10px;padding-right:10px;}
-#footer{margin-top:10px;padding-top:10px;border-top:solid 1px #666;color:#333333;text-align:left;font-size:small;}
+#footer{text-align:left;font-size:small;}
 #twitter{line-height:20px;vertical-align:top;text-align:right;font-style:italic;color:#333;margin-top:24px;font-size:14px;}
 /*code{display:block;white-space:pre-wrap}*/
 pre{margin-left:24px}

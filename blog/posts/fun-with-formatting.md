@@ -2,6 +2,8 @@ Fun with formatting
 
 Since I never remember which way round headings go in markdown, let's have a play around.
 
+---
+
 # Heading 1
 
 That should be the biggest.

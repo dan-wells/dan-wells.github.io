@@ -14,8 +14,10 @@
 <div id="description"></div>
 </div></div></div>
 <div id="all_posts_top"><a href="/blog/all_posts.html">All posts</a> &mdash; <a href="/blog/all_tags.html">All tags</a> &mdash; <a href="/blog/">Subscribe</a></div>
+<hr class="no-cut"/>
 <div id="divbody"><div class="content">
 <!-- entry begin -->
+<div class="entry">
 <h3><a class="ablack" href="/blog/posts/fun-with-formatting.html">
 Fun with formatting
 </a></h3>
@@ -25,7 +27,9 @@ Dan Wells
 </div>
 <!-- text begin -->
 
-<p>Since I never remember which way round headings go in markdown, let&rsquo;s have a play around.</p>
+<p>Since I never remember which way round headings go in markdown, let's have a play around.</p>
+
+<!--hr /-->
 
 <h1>Heading 1</h1>
 
@@ -37,7 +41,7 @@ Dan Wells
 
 <h3>Heading 3</h3>
 
-<p>I remember this is something on the index page but not what&hellip;
+<p>I remember this is something on the index page but not what...
 Oh yes, this is the level used for blog post titles after all.</p>
 
 <h4>Heading 4</h4>
@@ -47,9 +51,9 @@ But do we dare dream to go smaller?</p>
 
 <h5>Heading 5</h5>
 
-<p>Nobody knows where we might end up, but that&rsquo;s already too small and squishy.</p>
+<p>Nobody knows where we might end up, but that's already too small and squishy.</p>
 
-<p>While we&rsquo;re at it, how about some other formatting?
+<p>While we're at it, how about some other formatting?
 Like a code block:</p>
 
 <pre><code>def hello():
@@ -57,13 +61,15 @@ Like a code block:</p>
 </code></pre>
 
 <p>That needs some specific CSS to display newlines as written, if you were to wrap it in triple-backticks.
-Indenting by four spaces seems better for actual code blocks, because then there&rsquo;s no conflict with formatting inline monospace using single backticks.</p>
+Indenting by four spaces seems better for actual code blocks, because then there's no conflict with formatting inline monospace using single backticks.</p>
 
 <p>Or a blockquote:</p>
 
-<blockquote><p>On 01 July 2020 Dan wrote:</p>
+<blockquote>
+  <p>On 01 July 2020 Dan wrote:</p>
 
-<p>This is far too much time to spend on making up a blog.</p></blockquote>
+<p>This is far too much time to spend on making up a blog.</p>
+</blockquote>
 
 <p>I guess we can also see what the <code>blog.css</code> does with lists, cos it has some specific settings:</p>
 
@@ -72,16 +78,18 @@ Indenting by four spaces seems better for actual code blocks, because then there
 <li>And another one</li>
 <li>One more for good measure</li>
 </ul>
+
 <p>Wonder what the spacing at the bottom is like?</p>
 
 <p>Tags: <a href='/blog/tags/tag_formatting-fun.html'>formatting-fun</a></p>
-
 <!-- text end -->
 
+</div>
+<hr class="no-cut"/>
 <div id="all_posts"><a href="/blog/index.html">Back to the index page</a></div>
 <!-- entry end -->
 </div>
-<div id="footer"> <a href="https://wellsd.net">Dan Wells</a> &mdash; <a href="mailto:dan&#64;wellsd&#46;net">dan&#64;wellsd&#46;net</a><br/>
+<div id="footer"><hr class=no-cut/> <a href="https://wellsd.net">Dan Wells</a> &mdash; <a href="mailto:dan&#64;wellsd&#46;net">dan&#64;wellsd&#46;net</a><br/>
 Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>
 </div></div>
 </body></html>
