@@ -868,24 +868,23 @@ create_css() {
     (( ${#css_include[@]} > 0 )) || css_include=('main.css' 'blog.css')
     if [[ ! -f blog.css ]]; then
         # blog.css directives will be loaded after main.css and thus will prevail
-        echo '#title{font-size: large;}
-a.ablack{color:black !important;}
-li{margin-bottom:8px;}
-ul,ol{margin-left:24px;margin-right:24px;}
+        echo 'a.ablack{color:black !important;}
 nav{margin-top:8px;margin-bottom:8px;text-align:left;}
 .subtitle{font-size:small;margin:4px 0px;}
 .content p{margin-left:24px;margin-right:24px;}
 .tags p{font-size:small;margin:12px 0px;}
-h1{margin-bottom:12px !important;}
 #description{font-size:large;margin-bottom:12px;}
-h3{margin-top:12px;margin-bottom:4px;}
-h4{margin-left:24px;margin-right:24px;}
-img{max-width:100%;}
 #divbodyholder{padding-left:10px;padding-right:10px;}
 #footer{text-align:left;font-size:small;}
+h1{margin-bottom:12px;}
+h3{margin-top:12px;margin-bottom:4px;}
+h4{margin-left:24px;margin-right:24px;}
+li{margin-bottom:8px;}
+ul,ol{margin-left:24px;margin-right:24px;}
+img{max-width:100%;}
 /*code{display:block;white-space:pre-wrap}*/
-pre{margin-left:24px}
-blockquote{border-left: solid 1px #666;}' > blog.css
+pre{margin-left:40px;padding-left:24px;border-left:solid 1px #666}
+blockquote{border-left:solid 1px #666;}' > blog.css
     fi
 
     # If there is a style.css from the parent page (i.e. some landing page)
