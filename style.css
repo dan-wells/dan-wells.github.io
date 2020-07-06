@@ -32,12 +32,17 @@ nav.home {
 img.photo {
   height: 180px;
   margin-right: 10px;
+  margin-bottom: 12px;
   float: left;
   box-shadow: 3px 3px 5px #888888;
 }
 
 img.icon {
   width: 1em;
+}
+
+div.info {
+  margin-bottom: 12px;
 }
 
 div.m {
