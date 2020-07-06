@@ -381,9 +381,8 @@ create_html_page() {
     # post-processing
     if [[ $index == no ]]; then
         # Remove <hr> from posts with cut previews
-        # Have to use (g)awk inplace for compatibility with use of $cut_line elsewhere
-        # (since sed has different escapes from other things...)
-        awk -i inplace "{ gsub(/$cut_line/, \"$cut_line_body\") }; { print }" $filename 2> /dev/null
+        sed -Ei "s/$cut_line/$cut_line_body/" $filename
+
         # Need <!-- text end --> to be on its own line, but don't want to
         # keep adding endless blank lines every time entries are rebuilt.
         # Cue despicable sed antics to squash multiple newlines:
