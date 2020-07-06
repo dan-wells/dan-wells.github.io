@@ -1035,7 +1035,7 @@ do_main() {
 
     # Create expected directories
     mkdir -p $blogpost_dir $tagfile_dir drafts
-    chmod -R 744 $blogpost_dir $tagfile_dir
+    chmod -R 755 $blogpost_dir $tagfile_dir
     chmod -R 700 drafts
 
     [[ $1 == list ]] &&
