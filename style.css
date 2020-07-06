@@ -22,18 +22,15 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 
-div.info {
-  width: 100%;
-  height: 180px; /* this effectively controls photo height */
-  float: left;
+nav.home {
+  float: right;
 }
 
 img.photo {
-  object-fit: contain; /* image is scaled to height of containing div */
-  height: 95%;
+  height: 180px;
   margin-right: 10px;
   float: left;
   box-shadow: 3px 3px 5px #888888;
@@ -44,14 +41,11 @@ img.icon {
 }
 
 div.m {
-  width: 100%;
-  margin-bottom: 1em;
-  clear: left;
+  margin: 12px 0px;
 }
 
 hr {
   clear: left;
-  /* explicitly specifying these prevents any weirdness in rendering */
   color: gray;
   border-top: thin solid;
 }
