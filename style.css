@@ -50,6 +50,17 @@ img.icon {
   width: 1em;
 }
 
+p.footnote {
+  font-size: small;
+}
+/* highlight text spans whose id matches the page fragment id in url */
+p.footnote:target {
+  /*background-color: #ffffcc;*/
+  background-color: rgba(255,255,204,0.6);
+  /*background-color: #bfefff;*/
+  /*background-color: rgba(191,239,255,0.6);*/
+}
+
 hr {
   clear: left;
   color: gray;
