@@ -48,7 +48,7 @@ Using a standard phonemic representation such as the International Phonetic Alph
 
 <p>
 While phonemes may be considered the minimal unit of sound used to form words in a given language, they can also be decomposed into sets of distinctive phonological features.
-For example, the /d/ in 'dog' and the /t/ in 'tog' differ only in a single phonological feature, namely voicing, the vibration of the vocal folds which you might feel when pronouncing /d/ but not /t/.<sup><a href="#fn-english" id="rt-english">1</a></sup>
+For example, the /d/ in 'dog' and the /t/ in 'tog' differ only in a single phonological feature, namely voicing: the vibration of the vocal folds which you might feel when pronouncing /d/ but not /t/ <a class="ref" href="#fn-english" id="ref-english">[1]</a>.
 In general, vowel phonemes are always voiced, so that voicing feature is something we can learn independently of whether or not there are any voiced consonants in our target language's training data.
 Putting everything together, even if we never saw a /d/ phoneme during model training, using a featural representation we might get away with setting the voicing feature on a /t/ phoneme which we have been able to learn about and transfer some of our knowledge about voicing from vocalic segments to synthesise a /d/ if needed.
 </p>
@@ -57,8 +57,8 @@ Putting everything together, even if we never saw a /d/ phoneme during model tra
 I plan to investigate the use of this kind of phonological feature representation for training multilingual TTS systems and more efficiently sharing acoustic information between languages, especially if only limited amounts of annotated data are available.
 </p>
 
-<p class="footnote" id="fn-english">
-<sup><a href="#rt-english">1</a></sup>Phonologically speaking, that is... the phonetics are a bit different for English, one of many reasons why it's probably kind of a bad choice for default exemplar language.
+<p class="fn" id="fn-english">
+<a href="#ref-english">[1]</a> Phonologically speaking, that is... the phonetics are a bit different for English, one of many reasons why it's probably kind of a bad choice for default exemplar language.
 <p>
 </div>
 

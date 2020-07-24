@@ -1,7 +1,6 @@
 html, body {
   height: 100%;
   margin: 0;
-  font-family: serif;
   background-image: url("/bg.gif");
   max-width: 800px;
 }
@@ -50,11 +49,17 @@ img.icon {
   width: 1em;
 }
 
-p.footnote {
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+a.ref:target {
+  background-color: rgba(255,255,204,0.6);
+}
+
+p.fn {
   font-size: small;
 }
 /* highlight text spans whose id matches the page fragment id in url */
-p.footnote:target {
+p.fn:target {
   /*background-color: #ffffcc;*/
   background-color: rgba(255,255,204,0.6);
   /*background-color: #bfefff;*/
@@ -67,9 +72,6 @@ hr {
   border-top: thin solid;
   border: 1px inset #eeeeee;
 }
-
-a { text-decoration:none; }
-a:hover { text-decoration:underline; }
 
 h1 {
   margin: 0;
