@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css" type="text/css"/>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>Dan Wells - Research</title>
+</head>
+
+<body>
+<div class="page">
+
+<div class="header">
+  <nav class="home">
+    <a href="/">Home</a> |
+    <a href="/about.html">About</a> |
+    <a href="/research.html">Research</a> |
+    <a href="/blog/index.html">Blog</a>
+  </nav>
+
+  <h1>Dan Wells</h1>
+</div>
+
+<div class="main">
+<div class="m">
+<hr>
+<h2>Research</h2>
+<p>
+My research interests are primarily in text-to-speech synthesis for low-resource languages, especially multilingual modelling, transfer learning and model adaptation in end-to-end neural network systems.
+I'm interested in finding representations of speech which allow more efficient sharing of information between languages, making it easier to bootstrap training new voices for languages with little annotated data.
+</p>
+</div>
+
+<div class="m">
+<h3>Sub-phonemic input representations for TTS</h3>
+<p>
+Recent end-to-end systems for text-to-speech synthesis are sequence-to-sequence models trained from (normalised) text inputs, implicitly learning a mapping from spelling to pronunciation and corresponding acoustic features on the other end.
+This works well if you have a lot (tens of hours) of transcribed audios, and is attractive for reducing the reliance on more traditional and expensive linguistic resources, especially pronunciation lexicons.
+This isn't necessarily the best way to train a multilingual model, however, given the variation in letter-sound correspondences and even entire orthographic systems between languages.
+</p>
+
+<p>
+Another option is to convert text transcriptions to phoneme sequences, i.e. the constituent units comprising the inventory of sounds in a given language.
+Using a standard phonemic representation such as the International Phonetic Alphabet allows for sharing of broadly similar sound inventories between languages, but there will still be cases where a sound exists in one language but not another, in which case sharing information about the acoustics of a given input symbol remains a problem.
+</p>
+
+<p>
+While phonemes may be considered the 'atoms' of sound used to form words in a given language, they can also be decomposed into sets of distinctive phonological features.
+For example, the /d/ in 'dog' and the /t/ in 'tog' differ only in a single phonological feature, namely voicing, the vibration of the vocal folds which you might feel when pronouncing /d/ but not /t/.<sup><a href="#fn-english" id="rt-english">1</a></sup>
+In general, vowel phonemes are always voiced, so that voicing feature is something we can learn independently of whether or not there are any voiced consonants in our target language's training data.
+Putting everything together, even if we never saw a /d/ phoneme during model training, using a featural representation we might get away with setting the voicing feature on a /t/ phoneme which we have been able to learn about and transfer some of our knowledge about voicing from vocalic segments to synthesise a /d/ if needed.
+</p>
+
+<p>
+I plan to investigate the use of this kind of phonological feature representation for training multilingual TTS systems and more efficiently sharing acoustic information between languages, especially if only limited amounts of annotated data are available.
+</p>
+
+<p class="footnote" id="fn-english">
+<sup><a href="#rt-english">1</a></sup>Phonologically speaking, that is... the phonetics are a bit different for English, one of many reasons why it's probably kind of a bad choice for default exemplar language.
+<p>
+</div>
+
+<div class="m">
+<h3>Multi-accent ASR with Mozilla Common Voice</h3>
+<p>
+I've looked at training accent-aware ASR systems for English using the crowd-sourced Mozilla Common Voice corpus, where those who contribute voice recordings can also add self-reported accent labels.
+</p>
+
+<p>
+My recipes for training Kaldi models on the latest release of English MCV are <a href="https://github.com/dan-wells/common-voice-kaldi">available on GitHub</a>.
+I looked at a couple different ways of passing accent information to an ASR system, either by appending a 1-hot accent ID vector or a full embedding extracted from a separately-trained accent ID system to acoustic feature inputs during training.
+The base model is <a href="https://kaldi-asr.org/doc/chain.html">an LF-MMI 'chain' model</a>, and I had to modify the Kaldi code for training and running these models to accept additional input vectors for accent encoding.
+You can find my fork of Kaldi with these changes <a href="https://github.com/dan-wells/kaldi/tree/chain-accent-vec">here</a> (and this is probably necessary for getting my MCV recipes to work properly right now).
+</p>
+</div>
+</div>
+
+<footer>
+<hr>
+Last modified:
+<script>
+  var modDate = new Date(document.lastModified);
+  var modDateStr = modDate.getFullYear() + "-"
+                 + ("0" + (modDate.getMonth() + 1)).slice(-2) + "-"
+                 + ("0" + modDate.getDate()).slice(-2);
+  document.write(modDateStr)
+</script>
+</footer>
+
+</div>
+</body>
+</html>
