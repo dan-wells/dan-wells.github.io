@@ -321,17 +321,21 @@ create_html_page() {
         # body divs
         echo '<div class="page">'
         echo '<div class="header">'
+        echo -e '<nav class="home">\n<a href="/">Home</a> |\n<a href="/about.html">About</a> |\n<a href="/research.html">Research</a> |\n<a href="/blog/index.html">Blog</a>\n</nav>'
         # blog title
         echo '<div id="title">'
         cat .title.html
         echo '</div>' # title
-        echo -e "<nav>\n<a href=\"/blog/$index_file\">$template_blog_index</a> |\n<a href=\"/blog/$archive_index\">$template_archive</a> |\n<a href=\"/blog/$tags_index\">$template_tags_title</a> |\n<a href=\"/\">$template_home_page</a>\n</nav>"
+        echo "<nav>"
         if [[ $filename == *"$index_file"* ]]; then
             visible_posts=$number_of_index_articles
             num_posts=$(list_posts | wc -l)
             (( num_posts < number_of_index_articles )) && visible_posts=$num_posts
-            echo "Showing $visible_posts/$num_posts posts"
+            echo "Showing $visible_posts/$num_posts posts |"
+        else
+            echo "<a href=\"/blog/$index_file\">$template_archive_index_page</a> |"
         fi
+        echo -e "<a href=\"/blog/$archive_index\">$template_archive</a> |\n<a href=\"/blog/$tags_index\">$template_tags_title</a>\n</nav>"
         echo '</div>' # header
         echo '<div class="main"><div class="content">'
 
@@ -831,7 +835,7 @@ make_rss() {
 # generate headers, footers, etc
 create_includes() {
     {
-        echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"/blog/$index_file\">$global_title</a></h1>"
+        echo "<h1 class=\"nomargin\">$global_title</h1>"
         echo "<div id=\"description\">$global_description</div>"
     } > ".title.html"
 
