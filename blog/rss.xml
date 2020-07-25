@@ -2,8 +2,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>wellsd Blog</title><link>https://wellsd.net/blog/index.html</link>
 <description></description><language>en</language>
-<lastBuildDate>Fri, 24 Jul 2020 18:12:50 +0100</lastBuildDate>
-<pubDate>Fri, 24 Jul 2020 18:12:50 +0100</pubDate>
+<lastBuildDate>Sat, 25 Jul 2020 12:20:33 +0100</lastBuildDate>
+<pubDate>Sat, 25 Jul 2020 12:20:33 +0100</pubDate>
 <atom:link href="https://wellsd.net/blog/rss.xml" rel="self" type="application/rss+xml" />
 <item><title>
 Fun with formatting
@@ -63,6 +63,7 @@ Indenting by four spaces seems better for actual code blocks, because then there
 <p>Wonder what the spacing at the bottom is like?</p>
 
 <div class="tags"><p>Tags: <a href='/blog/tags/tag_formatting-fun.html'>formatting-fun</a></p></div>
+
 ]]></description><link>https://wellsd.net/blog/posts/fun-with-formatting.html</link>
 <guid>https://wellsd.net/blog/posts/fun-with-formatting.html</guid>
 <dc:creator>Dan Wells</dc:creator>
@@ -74,7 +75,6 @@ First post
 <p>This is just an example of what we can do with a simple bashblog.</p>
 
 <div class="tags"><p>Tags: <a href='/blog/tags/tag_example.html'>example</a></p></div>
-
 ]]></description><link>https://wellsd.net/blog/posts/first-post.html</link>
 <guid>https://wellsd.net/blog/posts/first-post.html</guid>
 <dc:creator>Dan Wells</dc:creator>

@@ -888,8 +888,9 @@ li{margin-bottom:8px;}
 ul,ol{margin-left:24px;margin-right:24px;}
 img{max-width:100%;}
 /*code{display:block;white-space:pre-wrap}*/
-pre{margin-left:40px;padding-left:24px;border-left:solid 1px #666}
-blockquote{border-left:solid 1px #666;}' > blog.css
+pre{margin:0px 40px;padding:10px 24px;border-left:solid 1px #666;background-color:rgba(255,255,204,0.6);}
+blockquote{margin:0px 40px;padding-top:10px;border-left:solid 1px #666;background-color:rgba(255,255,204,0.6);}
+blockquote p{margin-top:0px;margin-bottom:0px;padding-bottom:10px;}' > blog.css
     fi
 
     # If there is a style.css from the parent page (i.e. some landing page)
