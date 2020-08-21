@@ -6,6 +6,12 @@ html, body {
   max-width: 800px;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 div.page {
   min-width: 32em; /* until we can work out better responsive design... */
   min-height: 100%;
