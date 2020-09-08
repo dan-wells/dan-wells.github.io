@@ -874,7 +874,6 @@ create_css() {
     if [[ ! -f blog.css ]]; then
         # blog.css directives will be loaded after main.css and thus will prevail
         echo 'a.ablack{color:black !important;}
-nav{margin-top:8px;margin-bottom:8px;text-align:left;}
 .subtitle{font-size:small;margin:4px 0px;}
 .content p{margin-left:24px;margin-right:24px;}
 .tags p{font-size:small;margin:12px 0px;}
