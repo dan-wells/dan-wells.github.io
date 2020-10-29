@@ -118,7 +118,7 @@ global_variables() {
     # "Tags:" (beginning of line in HTML file with list of all tags for this article)
     template_tags_line_header="Tags:"
     # "Back to the index page" (used on archive page, it is link to blog index)
-    template_archive_index_page="Back to the index page"
+    template_archive_index_page="Back to blog index"
     # "Subscribe" (used on bottom of index page, it is link to RSS feed)
     template_subscribe="Subscribe"
     # "Subscribe to this page..." (used as text for browser feed button that is embedded to html)
