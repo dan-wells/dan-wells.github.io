@@ -2,72 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>wellsd Blog</title><link>https://wellsd.net/blog/index.html</link>
 <description></description><language>en</language>
-<lastBuildDate>Sat, 25 Jul 2020 12:20:33 +0100</lastBuildDate>
-<pubDate>Sat, 25 Jul 2020 12:20:33 +0100</pubDate>
+<lastBuildDate>Thu, 29 Oct 2020 14:55:41 +0000</lastBuildDate>
+<pubDate>Thu, 29 Oct 2020 14:55:41 +0000</pubDate>
 <atom:link href="https://wellsd.net/blog/rss.xml" rel="self" type="application/rss+xml" />
-<item><title>
-Fun with formatting
-</title><description><![CDATA[
-
-<p>Since I never remember which way round headings go in markdown, let's have a play around.</p>
-
-
-<h1>Heading 1</h1>
-
-<p>That should be the biggest.</p>
-
-<h2>Heading 2</h2>
-
-<p>This is normally a subheading, but might be the size of the post title on the index page?</p>
-
-<h3>Heading 3</h3>
-
-<p>I remember this is something on the index page but not what...
-Oh yes, this is the level used for blog post titles after all.</p>
-
-<h4>Heading 4</h4>
-
-<p>This is the level you would want to use for subheadings inside a blog post, it matches the left-indentation of the rest of the body text.
-But do we dare dream to go smaller?</p>
-
-<h5>Heading 5</h5>
-
-<p>Nobody knows where we might end up, but that's already too small and squishy.</p>
-
-<p>While we're at it, how about some other formatting?
-Like a code block:</p>
-
-<pre><code>def hello():
-    print("hello world!")
-</code></pre>
-
-<p>That needs some specific CSS to display newlines as written, if you were to wrap it in triple-backticks.
-Indenting by four spaces seems better for actual code blocks, because then there's no conflict with formatting inline monospace using single backticks.</p>
-
-<p>Or a blockquote:</p>
-
-<blockquote>
-  <p>On 01 July 2020 Dan wrote:</p>
-
-<p>This is far too much time to spend on making up a blog.</p>
-</blockquote>
-
-<p>I guess we can also see what the <code>blog.css</code> does with lists, cos it has some specific settings:</p>
-
-<ul>
-<li>Here is one list item</li>
-<li>And another one</li>
-<li>One more for good measure</li>
-</ul>
-
-<p>Wonder what the spacing at the bottom is like?</p>
-
-<div class="tags"><p>Tags: <a href='/blog/tags/tag_formatting-fun.html'>formatting-fun</a></p></div>
-
-]]></description><link>https://wellsd.net/blog/posts/fun-with-formatting.html</link>
-<guid>https://wellsd.net/blog/posts/fun-with-formatting.html</guid>
-<dc:creator>Dan Wells</dc:creator>
-<pubDate>Wed, 01 Jul 2020 19:20:02 +0100</pubDate></item>
 <item><title>
 First post
 </title><description><![CDATA[
