@@ -320,8 +320,8 @@ create_html_page() {
         [[ $filename = $index_file* ]] && [[ -n $body_begin_file_index ]] && cat "$body_begin_file_index"
         # body divs
         echo '<div class="page">'
-        echo '<div class="header">'
         echo -e '<nav class="home">\n<a href="/">Home</a> |\n<a href="/about.html">About</a> |\n<a href="/research.html">Research</a> |\n<a href="/blog/index.html">Blog</a>\n</nav>'
+        echo '<div class="header">'
         # blog title
         echo '<div id="title">'
         cat .title.html

@@ -13,16 +13,17 @@ html, body {
 }
 
 div.page {
-  min-width: 32em; /* until we can work out better responsive design... */
+  position: relative;
   min-height: 100%;
-  margin-left: 18px;
+  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
 div.header {
-  margin-top: 18px;
+  margin-top: 10px;
   flex-shrink: 0;
 }
 
@@ -42,11 +43,15 @@ footer {
 }
 
 nav.home {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 10px;
 }
 
 img.photo {
-  height: 180px;
+  max-width: 30%;
+  max-height: 180px;
   margin-right: 10px;
   float: left;
   box-shadow: 3px 3px 5px #888888;
@@ -107,3 +112,12 @@ ul {
   padding-left: 1.5em;
 }
 
+@media (max-width: 600px) {
+  img.photo {
+    float: right;
+  }
+  nav.home {
+    position: relative;
+    margin-left: auto;
+  }
+}
