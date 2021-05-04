@@ -182,8 +182,9 @@ For more details on model setup and interpreting the results, please see the pap
 
 <p>
 The table below presents the progression of our <i>P-240-ft</i> and <i>F-240-ft</i> German voices as the corresponding English base models are fine-tuned.
-We did not save model checkpoints at all of these early training steps, so we instead present test utterances which were generated as part of our training monitoring.
-Rather than the Parallel WaveGAN vocoder used for our listening test stimuli, these utterances have been generated using Griffin-Lim on predicted acoustic features.
+The first column represents zero-shot synthesis of German speech from the English base model.
+When using phoneme inputs, embeddings for German-specific phonemes are initialised with the embeddings of similar English phonemes from the base model.
+With phonological feature inputs, representations of German-specific phonemes are composed from representations of individual features in the base model directly.
 </p>
 
 <p>
@@ -191,68 +192,68 @@ Note: We re-initialise the stop token predictor of our Tacotron 2 model at the s
 </p>
 
 <table border='1'>
-    <tr><td>Steps</td><td>0</td><td>1k</td><td>2k</td><td>3k</td><td>5k</td><td>10k</td><td>20k</td><td>60k</td></tr>
+    <tr><td>Steps</td><td>0</td><td>500</td><td>1k</td><td>2k</td><td>5k</td><td>10k</td><td>20k</td><td>60k</td></tr>
     <tr><td>P</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/0/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/1k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/2k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/3k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/5k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/10k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/20k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/60k/TestSentence_2.wav'></audio></td>
-    <td rowspan="2" class="transcript">Alle Menschen sind frei und gleich an Würde und Rechten geboren.</td></tr>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/0/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/500/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/1000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/2000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/5000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/10000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/20000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/60000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+    <td rowspan="2" class="transcript">Sie trug nichts bei sich als einen kleinen Vogel in einem winzigen Käfig.</td></tr>
     <tr><td>F</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/0/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/1k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/2k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/3k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/5k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/10k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/20k/TestSentence_2.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/60k/TestSentence_2.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/0/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/500/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/1000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/2000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/5000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/10000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/20000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/60000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
     </tr>
 
     <tr><td>P</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/0/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/1k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/2k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/3k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/5k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/10k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/20k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/60k/TestSentence_3.wav'></audio></td>
-    <td rowspan="2" class="transcript">Einst stritten sich Nordwind und Sonne, wer von ihnen beiden wohl der Stärkere wäre, als ein Wanderer, der in einen warmen Mantel gehüllt war, des Weges daherkam.</td></tr>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/0/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/500/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/1000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/2000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/5000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/10000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/20000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/60000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+    <td rowspan="2" class="transcript">Da trat ihre Lieblingsmagd, die Singende Seemuschel, herein und brachte einen zusammengerollten Brief.</td></tr>
     <tr><td>F</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/0/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/1k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/2k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/3k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/5k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/10k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/20k/TestSentence_3.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/60k/TestSentence_3.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/0/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/500/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/1000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/2000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/5000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/10000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/20000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/60000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
     </tr>
 
     <tr><td>P</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/0/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/1k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/2k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/3k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/5k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/10k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/20k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/p.240.ft/60k/TestSentence_4.wav'></audio></td>
-    <td rowspan="2" class="transcript">Endlich gab der Nordwind den Kampf auf.</td></tr>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/0/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/500/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/1000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/2000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/5000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/10000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/20000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/60000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+    <td rowspan="2" class="transcript">Dem wackern Pehrson ins Auge blickend, wurde ihm heiter und mutig zu Sinn.</td></tr>
     <tr><td>F</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/0/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/1k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/2k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/3k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/5k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/10k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/20k/TestSentence_4.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/progress/f.240.ft/60k/TestSentence_4.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/0/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/500/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/1000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/2000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/5000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/10000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/20000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
+        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/60000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
     </tr>
 
 </table>
