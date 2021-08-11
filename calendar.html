@@ -8,40 +8,20 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <title>Dan Wells - Calendar</title>
   <script>
-  /* Return a Date for the last Sunday in a month
-  ** @param {number} year - full year number (e.g. 2015)
-  ** @param {number} month - calendar month number (jan=1)
-  ** @returns {Date} date for last Sunday in given month
-  */
+  // BST holds between last Sundays of March and October
   function getLastSunday(year, month) {
-      // Create date for last day in month
       var d = new Date(year, month, 0);
-      // Adjust to previous Sunday
       d.setDate(d.getDate() - d.getDay());
       return d;
   }
-  /* Return Date object for current time in London. Assumes
-  ** daylight saving starts at 01:00 UTC on last Sunday in March
-  ** and ends at 01:00 UTC on the last Sunday in October.
-  ** @param {Date} d - date to test. Default to current
-  **                   system date and time
-  */
-  function getLondonTime(d) {
-      // Use provided date or default to current date and time
-      d = d || new Date();
-      // Get start and end dates for daylight saving for supplied date's year
-      // Set UTC date values and time to 01:00
+  function getLondonTimeZone() {
+      var d = new Date();
       var dstS = getLastSunday(d.getFullYear(), 3);
       var dstE = getLastSunday(d.getFullYear(), 10);
-      dstS = new Date(Date.UTC(dstS.getFullYear(), dstS.getMonth(), dstS.getDate(),1));
-      dstE = new Date(Date.UTC(dstE.getFullYear(), dstE.getMonth(), dstE.getDate(),1));
-      // If date is between dstStart and dstEnd, add 1 hour to UTC time
-      // and format using +60 offset
       if (d > dstS && d < dstE) {
-          return 'BST';
+          return 'BST (UTC+01:00)';
       }
-      // Otherwise, don't adjust and format with 00 offset
-      return 'GMT';
+      return 'GMT (UTC+00:00)';
   }
   </script>
 </head>
@@ -65,12 +45,13 @@
 <hr>
 <p>
 Here's my calendar, for a very approximate idea of my availability.
-Please email with a suggested time if you want to arrange a meeting.
+If you want to arrange a meeting, please email with a suggested time.
 For group meetings, I like <a href="https://www.when2meet.com/">When2meet</a>.
 </p>
 
 <p>
-<b>Note:</b> I am currently in the <script>document.write(getLondonTime(new Date()));</script> timezone, and generally prefer to meet between 10:00&ndash;18:00.
+<b>Note:</b> My time zone is currently <script>document.write(getLondonTimeZone());</script>.
+I prefer to meet between 10:00&ndash;18:00.
 </p>
 </div>
 
