@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
-  <title>Cross-lingual Transfer of Phonological Features for Low-resource Speech Synthesis</title>
+  <title>The CSTR entry to the Blizzard Challenge 2021</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
    // audio pause seeks to beginning
@@ -26,9 +26,16 @@
     }
     td {
       text-align: center;
+      padding: 0px;
     } 
     td.transcript {
       text-align: left;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    tr.header td {
+      padding-left: 5px;
+      padding-right: 5px;
     }
   </style>
 </head>
@@ -44,18 +51,20 @@ University of Edinburgh
 </p>
 
 <p>
-This is the companion webpage for our entry to the Blizzard Challenge 2021 spoke task for synthesizing Spanish utterances including some English words.
-You can read the paper <a href="blizzard2021.pdf">here</a>.
+This is the companion webpage for our entry to the <a href="https://www.synsig.org/index.php/Blizzard_Challenge_2021">Blizzard Challenge 2021</a> spoke task for synthesizing Spanish utterances including some English words.
+For a detailed description of the system we submitted, read our paper <a href="cstr_blizzard2021.pdf">here</a>.
 </p>
 
 
-<h2>Supplementary listening test samples</h2>
+<h2>Audio samples</h2>
 
 <p>
-The table below presents a selection of the audio samples used in our supplementary listening test, separate from the main Blizzard evaluation.
-Each sample was presented alongside its text transcript, with English words highlighted in <b>bold</b>.
-We asked participants to rate each sample on a 5-point Likert scale (from "disagree" to "agree") with regard to the following statements:
+The table below presents a selection of the audio samples submitted to the main Blizzard Challenge evaluation and used in our supplementary listening test.
+In our experiments with different nativization strategies, each sample was presented alongside its text transcript, with English words highlighted in <b>bold</b>.
+</p>
 
+<p>
+We asked participants to rate each sample on a 5-point Likert scale (from "disagree" to "agree") with regard to the following statements:
 <ol>
     <li>This phrase is very natural.</li>
     <li>Considering the marked words, this speaker shows mastery of English.</li>
@@ -66,207 +75,71 @@ We asked participants to rate each sample on a 5-point Likert scale (from "disag
 <p>
 <b>System key</b>
 <ul>
-    <li><i>Ref</i> &ndash; Natural speech reference</li> 
-    <li><i>Copy</i> &ndash; Vocoded speech using mel spectral features extracted from the reference (copy synthesis)</li> 
-    <li><i>P</i> &ndash; Phoneme inputs</li> 
+    <li><i>Blizzard</i> &ndash; System submitted for Blizzard evaluation: phonological feature inputs, pronunciations and word-level language embeddings determined by automatic language ID</li> 
+    <li><i>Mix</i> &ndash; Pronunciations and word-level language embeddings determined by ground-truth language labels</li> 
+    <li><i>Nat</i> &ndash; Pronunciations determined by ground-truth language labels, all language embeddings set to Spanish (nativized)</li> 
+    <li><i>Esp</i> &ndash; All pronunciations produced by Spanish g2p rules only (no nativization of English words) and all language embeddings set to Spanish</li> 
     <li><i>F</i> &ndash; Phonological feature inputs</li> 
-    <li><i>240</i> &ndash; Trained on 4 hours of German speech only</li> 
-    <li><i>240-ft</i> &ndash; Base model 14 hours of English, fine-tuned using 4 hours of German</li> 
-    <li><i>15-ft</i> &ndash; Base model 14 hours of English, fine-tuned using 15 minutes of German</li> 
+    <li><i>P</i> &ndash; Phoneme inputs</li> 
 </ul>
 </p>
 
-<p>
-Overall, our best performing TTS systems were <i>P-240-ft</i> and <i>F-240-ft</i>, with no significant difference between the two.
-There was also no significant difference between fine-tuned systems using just 15 minutes of German data and those trained from scratch on 4 hours of German.
-While this suggests that fine-tuning a source model from a high-resource language is a viable approach in low-resource settings, we find no evidence that one input representation is better than the other in this context when it comes to subjective naturalness ratings.
-However, we did find that phonological features give a more natural voice when training on 4 hours of German speech only (<i>F-240</i> &gt; <i>P-240</i>).
-For more details on model setup and interpreting the results, please see the paper.
-</p>
-
 <table border='1'>
-<tr><td rowspan="2">Ref</td><td rowspan="2">Copy</td><td colspan='2'>240</td><td colspan='2'>240-ft</td><td colspan='2'>15-ft</td></tr>
-<tr><td>P</td><td>F</td><td>P</td><td>F</td><td>P</td><td>F</td></tr>
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/achtgesichterambiwasse_0378.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/achtgesichterambiwasse_0378.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/achtgesichterambiwasse_0378.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/achtgesichterambiwasse_0378.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/achtgesichterambiwasse_0378.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/achtgesichterambiwasse_0378.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/achtgesichterambiwasse_0378.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/achtgesichterambiwasse_0378.wav'></audio></td>
-<td class="transcript">Sie t<span style="color:red">r</span>ug ni<span style="color:red">ch</span>ts bei si<span style="color:red">ch</span> als einen kleinen V<span style="color:red">o</span>gel in einem winzigen Käfi<span style="color:red">g</span>.</td></tr>
+<tr class="header"><td rowspan="2">Blizzard</td><td colspan='2'>Mix</td><td colspan='2'>Nat</td><td colspan='2'>Esp</td></tr>
+<tr class="header"><td>F</td><td>P</td><td>F</td><td>P</td><td>F</td><td>P</td></tr>
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_auto/MOS_0026.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_gt/MOS_0026.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_gt/MOS_0026.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp/MOS_0026.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp/MOS_0026.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp2/MOS_0026.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp2/MOS_0026.wav'></audio></td>
+<td class="transcript"><b>Inhibit</b> <b>Face</b> <b>and</b> <b>Neck-Lift:</b> El <b>'lifting'</b> de cabina definitivo para rostro, cuello y escote.</td></tr>
 
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/achtgesichterambiwasse_0094.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/achtgesichterambiwasse_0094.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/achtgesichterambiwasse_0094.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/achtgesichterambiwasse_0094.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/achtgesichterambiwasse_0094.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/achtgesichterambiwasse_0094.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/achtgesichterambiwasse_0094.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/achtgesichterambiwasse_0094.wav'></audio></td>
-<td class="transcript">Da t<span style="color:red">r</span>at ih<span style="color:red">r</span>e Lieblingsmagd, die Singende Seemuschel, he<span style="color:red">r</span>ein und b<span style="color:red">r</span>a<span style="color:red">ch</span>te einen zusammeng<span style="color:red">er</span>ollten B<span style="color:red">r</span>ief.</td></tr>
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_auto/MOS_0076.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_gt/MOS_0076.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_gt/MOS_0076.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp/MOS_0076.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp/MOS_0076.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp2/MOS_0076.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp2/MOS_0076.wav'></audio></td>
+<td class="transcript">Y no es tanto <b>'spoiler'</b> como motor obvio y auténtico sentido de la película.</td></tr>
 
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/serapionsbruederauswahl_0942.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/serapionsbruederauswahl_0942.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/serapionsbruederauswahl_0942.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/serapionsbruederauswahl_0942.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/serapionsbruederauswahl_0942.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/serapionsbruederauswahl_0942.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/serapionsbruederauswahl_0942.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/serapionsbruederauswahl_0942.wav'></audio></td>
-<td class="transcript">Dem wack<span style="color:red">er</span>n Peh<span style="color:red">r</span>son ins Auge blickend, wu<span style="color:red">r</span>de ihm heit<span style="color:red">er</span> und muti<span style="color:red">g</span> zu Sinn.</td></tr>
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_auto/MOS_0194.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_gt/MOS_0194.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_gt/MOS_0194.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp/MOS_0194.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp/MOS_0194.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp2/MOS_0194.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp2/MOS_0194.wav'></audio></td>
+<td class="transcript">La Bolsa suspendió sus operaciones por treinta minutos mediante el mecanismo <b>circuit</b> <b>breaker.</b></td></tr>
 
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/serapionsbruederauswahl_0436.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/serapionsbruederauswahl_0436.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/serapionsbruederauswahl_0436.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/serapionsbruederauswahl_0436.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/serapionsbruederauswahl_0436.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/serapionsbruederauswahl_0436.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/serapionsbruederauswahl_0436.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/serapionsbruederauswahl_0436.wav'></audio></td>
-<td class="transcript">Dies<span style="color:red">er</span> N<span style="color:red">o</span>velle folgte eine and<span style="color:red">er</span>e und wied<span style="color:red">er</span> eine and<span style="color:red">er</span>e, bis die Sonne h<span style="color:red">och</span> im Mittag <span style="color:red">&uuml;</span>b<span style="color:red">er</span> uns stand.</td></tr>
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_auto/MOS_0113.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_gt/MOS_0113.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_gt/MOS_0113.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp/MOS_0113.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp/MOS_0113.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp2/MOS_0113.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp2/MOS_0113.wav'></audio></td>
+<td class="transcript">Lo sucedido provocó que un <b>'hashtag'</b> que animaba a boicotear Mulán se convirtiera en <b>'trending</b> <b>topic'</b> en <b>Twitter</b> y que la intérprete recibiera un aluvión de críticas.</td></tr>
 
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/achtgesichterambiwasse_2611.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/achtgesichterambiwasse_2611.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/achtgesichterambiwasse_2611.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/achtgesichterambiwasse_2611.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/achtgesichterambiwasse_2611.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/achtgesichterambiwasse_2611.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/achtgesichterambiwasse_2611.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/achtgesichterambiwasse_2611.wav'></audio></td>
-<td class="transcript">De<span style="color:red">r</span> letzte Akt kam und die Szene, w<span style="color:red">o</span> die ge<span style="color:red">r</span>ettete G<span style="color:red">ro</span>&szlig;mutt<span style="color:red">er</span> aus de<span style="color:red">r</span> Kabinent<span style="color:red">&uuml;r</span> k<span style="color:red">r</span>ie<span style="color:red">ch</span>t und w&auml;h<span style="color:red">r</span>end des Schiffsungl<span style="color:red">&uuml;</span>cks na<span style="color:red">ch</span> Ilse sch<span style="color:red">r</span>eit.</td></tr>
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_auto/MOS_0062.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_gt/MOS_0062.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_gt/MOS_0062.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp/MOS_0062.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp/MOS_0062.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp2/MOS_0062.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp2/MOS_0062.wav'></audio></td>
+<td class="transcript"><b>Joy</b> <b>of</b> <b>Life</b> está basado en una novela de viajes en el tiempo.</td></tr>
 
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/meisterfloh_2293.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/meisterfloh_2293.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/meisterfloh_2293.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/meisterfloh_2293.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/meisterfloh_2293.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/meisterfloh_2293.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/meisterfloh_2293.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/meisterfloh_2293.wav'></audio></td>
-<td class="transcript">I<span style="color:red">ch</span> mu&szlig;te meine Zuflu<span style="color:red">ch</span>t zu den Gesti<span style="color:red">r</span>nen nehmen und <span style="color:red">Eu</span><span style="color:red">er</span> H<span style="color:red">oro</span>sk<span style="color:red">o</span>p stellen, um das Geheimnis zu l<span style="color:red">&ouml;</span>sen.</td></tr>
-
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/achtgesichterambiwasse_0262.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/achtgesichterambiwasse_0262.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/achtgesichterambiwasse_0262.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/achtgesichterambiwasse_0262.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/achtgesichterambiwasse_0262.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/achtgesichterambiwasse_0262.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/achtgesichterambiwasse_0262.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/achtgesichterambiwasse_0262.wav'></audio></td>
-<td class="transcript">Hanakes He<span style="color:red">r</span>z wa<span style="color:red">r</span> lei<span style="color:red">ch</span>t<span style="color:red">er</span>. Sie t<span style="color:red">r</span>at aus dem Seegema<span style="color:red">ch</span> in das nebenanliegende Gema<span style="color:red">ch</span>, in das die F<span style="color:red">r</span><span style="color:red">eu</span>nde he<span style="color:red">r</span>eindr<span style="color:red">&auml;</span>ngten.</td></tr>
-
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/serapionsbruederauswahl_0669.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/serapionsbruederauswahl_0669.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/serapionsbruederauswahl_0669.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/serapionsbruederauswahl_0669.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/serapionsbruederauswahl_0669.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/serapionsbruederauswahl_0669.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/serapionsbruederauswahl_0669.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/serapionsbruederauswahl_0669.wav'></audio></td>
-<td class="transcript">Du gef&auml;llst mi<span style="color:red">r</span> ga<span style="color:red">r</span> w<span style="color:red">oh</span>l und sollst an mi<span style="color:red">ch</span> fein denken, wenn i<span style="color:red">ch</span> wied<span style="color:red">er</span> auf dem Mee<span style="color:red">r</span>e bin.</td></tr>
-
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/achtgesichterambiwasse_1779.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/achtgesichterambiwasse_1779.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/achtgesichterambiwasse_1779.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/achtgesichterambiwasse_1779.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/achtgesichterambiwasse_1779.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/achtgesichterambiwasse_1779.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/achtgesichterambiwasse_1779.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/achtgesichterambiwasse_1779.wav'></audio></td>
-<td class="transcript">I<span style="color:red">ch</span> will mein Haa<span style="color:red">r</span> zum zweitenmal abschneiden und es den Tempelg<span style="color:red">&ouml;</span>tt<span style="color:red">er</span>n opf<span style="color:red">er</span>n.</td></tr>
-
-<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ref/achtgesichterambiwasse_0587.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/copy/achtgesichterambiwasse_0587.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.4h/achtgesichterambiwasse_0587.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.4h/achtgesichterambiwasse_0587.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.240/achtgesichterambiwasse_0587.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.240/achtgesichterambiwasse_0587.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/phones.ft.15/achtgesichterambiwasse_0587.wav'></audio></td>
-<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/feats.ft.15/achtgesichterambiwasse_0587.wav'></audio></td>
-<td class="transcript">I<span style="color:red">ch</span> habe dein und mein Leben ge<span style="color:red">r</span>ettet. Denn die T<span style="color:red">o</span>ten k<span style="color:red">&ouml;</span>nnen si<span style="color:red">ch</span> ni<span style="color:red">ch</span>t k<span style="color:red">&uuml;</span>ssen, nu<span style="color:red">r</span> die Lebenden. Was hast du, Geliebt<span style="color:red">er</span>?</td></tr>
-</table>
-
-
-<h2>Transfer from English to German</h2>
-
-<p>
-The table below presents the progression of our <i>P-240-ft</i> and <i>F-240-ft</i> German voices as the corresponding English base models are fine-tuned.
-The first column represents zero-shot synthesis of German speech from the English base model.
-When using phoneme inputs, embeddings for German-specific phonemes are initialised with the embeddings of similar English phonemes from the base model.
-With phonological feature inputs, representations of German-specific phonemes are composed from representations of individual features in the base model directly.
-</p>
-
-<p>
-Note: We re-initialise the stop token predictor of our Tacotron 2 model at the start of fine-tuning, so early checkpoints are more prone to utterance-final babbling than the source English model synthesising German phone strings on its own.
-</p>
-
-<table border='1'>
-    <tr><td>Steps</td><td>0</td><td>500</td><td>1k</td><td>2k</td><td>5k</td><td>10k</td><td>20k</td><td>60k</td></tr>
-    <tr><td>P</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/0/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/500/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/1000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/2000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/5000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/10000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/20000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/60000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-    <td rowspan="2" class="transcript">Sie t<span style="color:red">r</span>ug ni<span style="color:red">ch</span>ts bei si<span style="color:red">ch</span> als einen kleinen V<span style="color:red">o</span>gel in einem winzigen Käfi<span style="color:red">g</span>.</td></tr>
-    <tr><td>F</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/0/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/500/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/1000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/2000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/5000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/10000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/20000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/60000/wavs_pwgan/achtgesichterambiwasse_0378_gen.wav'></audio></td>
-    </tr>
-
-    <tr><td>P</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/0/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/500/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/1000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/2000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/5000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/10000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/20000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/60000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-    <td rowspan="2" class="transcript">Da t<span style="color:red">r</span>at ih<span style="color:red">r</span>e Lieblingsmagd, die Singende Seemuschel, he<span style="color:red">r</span>ein und b<span style="color:red">r</span>a<span style="color:red">ch</span>te einen zusammeng<span style="color:red">er</span>ollten B<span style="color:red">r</span>ief.</td></tr>
-    <tr><td>F</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/0/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/500/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/1000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/2000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/5000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/10000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/20000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/60000/wavs_pwgan/achtgesichterambiwasse_0094_gen.wav'></audio></td>
-    </tr>
-
-    <tr><td>P</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/0/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/500/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/1000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/2000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/5000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/10000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/20000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/p.240.ft/60000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-    <td rowspan="2" class="transcript">Dem wack<span style="color:red">er</span>n Peh<span style="color:red">r</span>son ins Auge blickend, wu<span style="color:red">r</span>de ihm heit<span style="color:red">er</span> und muti<span style="color:red">g</span> zu Sinn.</td></tr>
-    <tr><td>F</td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/0/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/500/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/1000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/2000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/5000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/10000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/20000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-        <td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/feats-to-speech/ft_progress/f.240.ft/60000/wavs_pwgan/serapionsbruederauswahl_0942_gen.wav'></audio></td>
-    </tr>
-
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_auto/MOS_0104.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_gt/MOS_0104.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_gt/MOS_0104.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp/MOS_0104.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp/MOS_0104.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/pf_esp2/MOS_0104.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/blizzard2021/phone_esp2/MOS_0104.wav'></audio></td>
+<td class="transcript">El <b>'reboot'</b> de <b>Gossip</b> <b>Girl</b> sigue adelante.</td></tr>
 </table>
 
 </body>
