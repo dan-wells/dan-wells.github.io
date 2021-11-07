@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
+  <title>Textless TTS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+   // audio pause seeks to beginning
+   $(function(){
+     $("audio").on("pause", function() {
+       this.currentTime = 0;
+     });
+   });
+   // audio play stops any other playing audio
+   $(function(){
+     $("audio").on("play", function() {
+       $("audio").not(this).each(function(index, audio) {
+         audio.pause(); audio.currentTime = 0;
+       });
+     });
+   });
+  </script>
+  <style> 
+    audio {
+      width: 50px;
+    }
+    td {
+      text-align: center;
+      padding: 0px;
+    } 
+    td.transcript {
+      text-align: left;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    tr.header td {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+<h1>Textless TTS</h1>
+
+<h2>Audio samples</h2>
+
+<table border='1'>
+<tr class="header"><td>Ref</td><td>Phone</td><td>100</td><td>50</td></tr>
+
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/ref/northandsouth_03_f000118.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/phone/northandsouth_03_f000118_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_100/northandsouth_03_f000118_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_50/northandsouth_03_f000118_generated_e2e.wav'></audio></td>
+<td class="transcript">chose daintily the ripest fruit, and sat down on the garden bench to enjoy it at his leisure.</td></tr>
+
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/ref/northandsouth_06_f000130.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/phone/northandsouth_06_f000130_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_100/northandsouth_06_f000130_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_50/northandsouth_06_f000130_generated_e2e.wav'></audio></td>
+<td class="transcript">when they sat with him on the ground seven days and seven nights, and none spake a word unto him;</td></tr>
+
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/ref/northandsouth_15_f000120.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/phone/northandsouth_15_f000120_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_100/northandsouth_15_f000120_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_50/northandsouth_15_f000120_generated_e2e.wav'></audio></td>
+<td class="transcript">I hope Miss Thornton is well, put in mister Hale, desirous of changing the current of the conversation.</td></tr>
+
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/ref/northandsouth_29_f000105.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/phone/northandsouth_29_f000105_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_100/northandsouth_29_f000105_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_50/northandsouth_29_f000105_generated_e2e.wav'></audio></td>
+<td class="transcript">The sight of him reminded her of the wish to see his mother, and commend Margaret to her care.</td></tr>
+
+<tr><td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/ref/northandsouth_41_f000128.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/phone/northandsouth_41_f000128_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_100/northandsouth_41_f000128_generated_e2e.wav'></audio></td>
+<td><audio controls src='https://groups.inf.ed.ac.uk/cstr3/danwells/textless-tts/unit_50/northandsouth_41_f000128_generated_e2e.wav'></audio></td>
+<td class="transcript">The morbid scales had fallen from her eyes, and she saw her position and her work more truly.</td></tr>
+
+</table>
+
+</body>
